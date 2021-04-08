@@ -28,7 +28,7 @@ python3 -m venv ./venv
 python -m venv venv
 ```
 
-This will create a virtual environment in your project root. It will be in the folder `venv` located in the project root. I *strongly* recommend adding `/venv` to your `.gitignore` file. This will save a lot of headaches down the road. When you migrate your project to your flip, you'll create a new virtual environment there.
+This will create a virtual environment in your project root. It will be in the folder `venv` located in the project root. I *strongly* recommend adding `/venv` to your `.gitignore` file. This will save a lot of headaches down the road. 
 
 To activate the virtual environment (and we need to do this everytime we close out of the terminal or log off the computer):
 
