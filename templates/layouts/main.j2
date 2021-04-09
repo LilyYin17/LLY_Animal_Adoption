@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>LLY Adoption Center</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
-</head>
-<body>
-    <h1>{% block subtitle %}{% endblock %}</h1>
-    {% block content %}{% endblock %}
-</body>
+    <head>
+        <title>LLY Adoption Center</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+    </head>
+    <body>
+        <div class="header"><h1>LLY Adoption Center</h1></div>
+        <div class="topnav">
+            <a href="#">Home</a>
+            <div class="topnav-right">
+                <a href="#">Sign Up</a>
+                <a href="#">Sign In</a>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
 </html>
