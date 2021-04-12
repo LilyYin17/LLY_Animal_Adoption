@@ -1,30 +1,33 @@
 body {
     text-align: center;
-    font-family: sans-serif;
-    background-color: lightgray;
+    font-family: cursive;
+    background-color: #f2f2f2;
 }
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_navbar */
 /* Style the header */
 .header {
-    background-color: #f1f1f1;
-    color: black;
-    padding: 20px;
+    background-color: #e6e6e6;
+    color: #e6e6e6;
+    text-shadow: 2px 2px 5px #000000;
+    padding-top: 1px;
+    padding-bottom: 135px;
     text-align: center;
-    background-image: url('https://previews.123rf.com/images/vectorikart/vectorikart1601/vectorikart160100010/50917807-animal-pets-grooming-and-health-care-flat-thin-line-vector-horizontal-header-banner-background-with-.jpg');
-    background-size: 800px 200px;
+    background-image: url('https://www.fetchpetcare.com/wp-content/uploads/2016/11/dreamstime_xxl_87694876.jpg');
+    background-size: 760px 220px;
 }
   
 /* Style the top navigation bar */
 .topnav {
     overflow: hidden;
-    background-color: #A9A9A9;
+    background-color: #404040;
 }
   
 /* Style the topnav links */
 .topnav a {
     float: left;
     display: block;
-    color: black;
+    color: #f2f2f2;
+    font-weight: bold;
     text-align: center;
     padding: 12px 14px;
     text-decoration: none;
@@ -32,7 +35,7 @@ body {
   
 /* Change color on hover */
 .topnav a:hover {
-    background-color: #ddd;
+    background-color: #808080;
     color: #f2f2f2;
 }
 
