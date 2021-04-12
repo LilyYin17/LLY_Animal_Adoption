@@ -1,6 +1,7 @@
 import pymysql 
 pymysql.install_as_MySQLdb()
-import os
+import MySQLdb
+from flaskext.mysql import MySQL
 from database.db_credentials import host, user, passwd, db
 
 def connect_to_database(host = host, user = user, passwd = passwd, db = db):
@@ -47,7 +48,7 @@ def execute_query(db_connection = None, query = None, query_params = ()):
 if __name__ == '__main__':
     print("Executing a sample query on the database using the credentials from db_credentials.py")
     db = connect_to_database()
-    query = "SELECT * from bsg_people;"
+    query = 'INSERT INTO Customers(email) VALUES (%s)'
     results = execute_query(db, query);
     print("Printing results of %s" % query)
 
