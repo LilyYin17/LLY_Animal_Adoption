@@ -1,0 +1,12 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2> Find Your Pet For Admin </h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/findPetAdmin_form.js') }}"></script>
+    <form id="FindPetAdmin_form" action="/findpet" onsubmit="return validateForm()" method="post" required>
+        <div class="container">
+            <button type="submit" class="dogsButton">Dogs Archive</button>
+            <button type="submit" class="catButton">Cats Archive</button>
+            <button type="submit" class="otherPetButton">All Other Pets Archive</button>
+        </div>
+    <form>
+{% endblock %}
