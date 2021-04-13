@@ -2,14 +2,16 @@ import pymysql
 pymysql.install_as_MySQLdb()
 import MySQLdb
 from flaskext.mysql import MySQL
-from database.db_credentials import host, user, passwd, db
 
-def connect_to_database(host = host, user = user, passwd = passwd, db = db):
-    '''
-    connects to a database and returns a database objects
-    '''
-    db_connection = MySQLdb.connect(host,user,passwd,db)
-    return db_connection
+host = 'cs467-instance.cnm3wt0bg4mw.us-west-1.rds.amazonaws.com'
+user = 'admin'
+passwd = 'OregonCS467' 
+db = 'adpotionproject'
+
+db_connection = pymysql.connect(host = 'cs467-instance.cnm3wt0bg4mw.us-west-1.rds.amazonaws.com',
+                        user = 'admin',
+                        passwd = 'OregonCS467', 
+                        db = 'adoptionproject')
 
 def execute_query(db_connection = None, query = None, query_params = ()):
     '''
@@ -47,9 +49,9 @@ def execute_query(db_connection = None, query = None, query_params = ()):
 
 if __name__ == '__main__':
     print("Executing a sample query on the database using the credentials from db_credentials.py")
-    db = connect_to_database()
-    query = 'INSERT INTO Customers(email) VALUES (%s)'
-    results = execute_query(db, query);
+    # query = 'INSERT INTO Customers(email) VALUES ("yinli@oregonstate.edu")'
+    query = 'SELECT * FROM Customers'
+    results = execute_query(db_connection, query);
     print("Printing results of %s" % query)
 
     for r in results.fetchall():

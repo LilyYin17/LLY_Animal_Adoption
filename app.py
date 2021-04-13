@@ -19,15 +19,12 @@ def signup_post():
     if request.method == 'GET':
         return render_template('signup_form_page.j2')
     elif request.method == 'POST':
-        try:
-            db_connection = db.connect_to_database()
-            email = request.form['email']
-            query = 'INSERT INTO Customers(email) VALUES ("yinli@oregonstate.edu")'
-            data = (email)
-            db.execute_query(db_connection, query, data)
-            return render_template('landing_page.j2')
-        except Exception as e:
-            return(str(e))
+        db_connection = db.db_connection
+        email = request.form['email']
+        query = 'INSERT INTO Customers(email) VALUES (%s)'
+        data = (email)
+        db.execute_query(db_connection, query, data)
+        return render_template('landing_page.j2')
 
 #Listener
 if __name__ == "__main__":
