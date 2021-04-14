@@ -64,7 +64,7 @@ Always remember to have your virtual environment running when working on your pr
 In your terminal, make sure your virtual environment is active if you have one, and run the following command
 
 ```bash
-pip3 install flask
+pip3 install Flask-MySQL
 ```
 
 You'll see a bunch of text fly across the screen. Let's confirm the install went OK by typing
