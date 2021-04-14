@@ -1,4 +1,27 @@
 {% extends 'layouts/main.j2' %}
-{% block content %} 
-    <h2> Welcome to LLY Adption Center </h2>
+{% block content %}
+    <div class="hintDiv">
+        <p>Click pictures to see available pets!</p>
+    </div>
+
+    <div class="catDiv">
+        <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
+        <div class="middle">
+            <a href="#">Browse Cats</a>
+        </div>
+    </div>
+
+    <div class="dogDiv">
+        <img src="/static/images/dog1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
+        <div class="middle">
+            <a href="#">Browse Dogs</a>
+        </div>
+    </div>
+
+    <div class="otherDiv">
+        <img src="/static/images/other1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
+        <div class="middle">
+            <a href="#">Browse Other Pets</a>
+        </div>
+    </div>
 {% endblock %}

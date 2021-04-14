@@ -2,7 +2,9 @@ body {
     text-align: center;
     font-family: sans-serif;
     background-color: #f2f2f2;
+    background-size: cover;
 }
+
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_navbar */
 /* Style the header */
 .header {
@@ -28,7 +30,6 @@ body {
     float: left;
     display: block;
     color: #f2f2f2;
-    font-weight: bold;
     text-align: center;
     padding: 12px 14px;
     text-decoration: none;
@@ -42,4 +43,123 @@ body {
 
 .topnav-right {
     float: right;
+}
+
+/* Style the hint text in the landing page */
+.hintDiv {
+    font-size: 125%;
+    font-weight: bold;
+    color: #404040;
+    position: relative;
+    top: 10px;
+}
+
+/* Style the cat block in landing page */
+.catDiv {
+    height: 300px;
+    width: 400px;
+    border-radius: 25px;
+    background-color: #bfbfbf;
+    position: relative;
+    top: 25px;
+    left: 50px;
+}
+
+/* Style the dog block in landing page */
+.dogDiv {
+    height: 300px;
+    width: 400px;
+    border-radius: 25px;
+    background-color: #bfbfbf;
+    position: relative;
+    top: -275px;
+    left: 550px;
+}
+
+/* Style the other pets block in landing page */
+.otherDiv {
+    height: 300px;
+    width: 400px;
+    border-radius: 25px;
+    background-color: #bfbfbf;
+    position: relative;
+    top: -575px;
+    left: 1050px;
+}
+
+/* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_css_image_overlay_opacity */
+/* Image hover overlay styling of three blocks in landing page */
+.landingImg {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+}
+
+.catDiv:hover .landingImg {
+    opacity: 0.3;
+}
+
+.catDiv:hover .middle {
+    opacity: 1;
+}
+
+.dogDiv:hover .landingImg {
+    opacity: 0.3;
+}
+
+.dogDiv:hover .middle {
+    opacity: 1;
+}
+
+.otherDiv:hover .landingImg {
+   opacity: 0.3;
+}
+
+.otherDiv:hover .middle {
+   opacity: 1;
+}
+
+.middle a {
+    background-color: #404040;
+    color: white;
+    font-size: 15px;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+/* Style the bottom navigation bar */
+.footer {
+    overflow: hidden;
+    background-color: #404040;
+    position: sticky;
+    bottom: 0;
+}
+
+/* Style the bottom navigation links */
+.footer a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 14px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.footer a:hover {
+    background-color: #808080;
+    color: #f2f2f2;
 }
