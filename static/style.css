@@ -2,7 +2,9 @@ body {
     text-align: center;
     font-family: cursive;
     background-color: #f2f2f2;
+    background-size: cover;
 }
+
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_navbar */
 /* Style the header */
 .header {
@@ -135,4 +137,29 @@ body {
   color: white;
   font-size: 15px;
   padding: 15px 30px;
+}
+
+/* Style the bottom navigation bar */
+.footer {
+    overflow: hidden;
+    background-color: #404040;
+    position: sticky;
+    bottom: 0;
+}
+
+/* Style the bottom navigation links */
+.footer a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 14px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.footer a:hover {
+    background-color: #808080;
+    color: #f2f2f2;
 }
