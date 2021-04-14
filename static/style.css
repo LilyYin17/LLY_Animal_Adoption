@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    font-family: cursive;
+    font-family: sans-serif;
     background-color: #f2f2f2;
     background-size: cover;
 }
@@ -8,6 +8,7 @@ body {
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_navbar */
 /* Style the header */
 .header {
+    font-family: cursive;
     background-color: #e6e6e6;
     color: #e6e6e6;
     text-shadow: 2px 2px 5px #000000;
@@ -29,7 +30,6 @@ body {
     float: left;
     display: block;
     color: #f2f2f2;
-    font-weight: bold;
     text-align: center;
     padding: 12px 14px;
     text-decoration: none;
@@ -152,7 +152,6 @@ body {
     float: right;
     display: block;
     color: #f2f2f2;
-    font-weight: bold;
     text-align: center;
     padding: 12px 14px;
     text-decoration: none;
