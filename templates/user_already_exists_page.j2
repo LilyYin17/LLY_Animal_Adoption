@@ -1,6 +1,7 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
 <script type=text/javascript src="{{ url_for('static', filename='/signup_form.js') }}"></script>
+    <p>Account already exists!</p>
     <form id="signup_form" action="/signup" onsubmit="return validateForm()" method="post" required>
         <div class="container">
             <p>Email: <input type="text" name="email"><br></p>

@@ -20,11 +20,19 @@ def signup_post():
         return render_template('signup_form_page.j2')
     elif request.method == 'POST':
         db_connection = db.db_connection
+        query = 'SELECT * FROM Customers WHERE email = %s'
         email = request.form['email']
-        query = 'INSERT INTO Customers(email) VALUES (%s)'
         data = (email)
-        db.execute_query(db_connection, query, data)
-        return render_template('landing_page.j2')
+        cursor = db.execute_query(db_connection, query, data)
+        results = cursor.fetchall()
+        #Check if account exists using MySQL
+        if results:
+            return render_template('user_already_exists_page.j2')
+        else:
+            cursor = db.execute_query(db_connection, query, data)
+            query = 'INSERT INTO Customers(email) VALUES (%s)'
+            db.execute_query(db_connection, query, data)
+            return render_template('landing_page.j2')
 
 #Listener
 if __name__ == "__main__":
