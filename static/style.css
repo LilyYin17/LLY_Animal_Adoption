@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  font-family: cursive;
+  font-family: sans-serif;
   background-color: #f2f2f2;
   background-size: cover;
 }
@@ -8,6 +8,7 @@ body {
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_navbar */
 /* Style the header */
 .header {
+  font-family: cursive;
   background-color: #e6e6e6;
   color: #e6e6e6;
   text-shadow: 2px 2px 5px #000000;
@@ -29,7 +30,6 @@ body {
   float: left;
   display: block;
   color: #f2f2f2;
-  font-weight: bold;
   text-align: center;
   padding: 12px 14px;
   text-decoration: none;
@@ -90,53 +90,54 @@ body {
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_css_image_overlay_opacity */
 /* Image hover overlay styling of three blocks in landing page */
 .landingImg {
-opacity: 1;
-display: block;
-width: 100%;
-height: auto;
-transition: .5s ease;
-backface-visibility: hidden;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }
 
 .middle {
-transition: .5s ease;
-opacity: 0;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
--ms-transform: translate(-50%, -50%)
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
 }
 
 .catDiv:hover .landingImg {
-opacity: 0.3;
+  opacity: 0.3;
 }
 
 .catDiv:hover .middle {
-opacity: 1;
+  opacity: 1;
 }
 
 .dogDiv:hover .landingImg {
-opacity: 0.3;
+  opacity: 0.3;
 }
 
 .dogDiv:hover .middle {
-opacity: 1;
+  opacity: 1;
 }
 
 .otherDiv:hover .landingImg {
-opacity: 0.3;
+ opacity: 0.3;
 }
 
 .otherDiv:hover .middle {
-opacity: 1;
+ opacity: 1;
 }
 
-.landingText {
-background-color: #404040;
-color: white;
-font-size: 15px;
-padding: 15px 30px;
+.middle a {
+  background-color: #404040;
+  color: white;
+  font-size: 15px;
+  padding: 15px 30px;
+  text-decoration: none;
 }
 
 /* Style the bottom navigation bar */
@@ -152,7 +153,6 @@ padding: 15px 30px;
   float: right;
   display: block;
   color: #f2f2f2;
-  font-weight: bold;
   text-align: center;
   padding: 12px 14px;
   text-decoration: none;
