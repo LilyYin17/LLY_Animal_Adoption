@@ -29,14 +29,20 @@ def signup_post():
         if results:
             return render_template('user_already_exists_page.j2')
         else:
-            cursor = db.execute_query(db_connection, query, data)
-            query = 'INSERT INTO Customers(email) VALUES (%s)'
+            query = 'INSERT INTO Customers(email, password) VALUES (%s, %s)'
+            email = request.form['email']
+            psw = request.form['psw']
+            data = (email, psw)
             db.execute_query(db_connection, query, data)
             return render_template('landing_page.j2')
+
 #log in page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login_page.j2')
+    if request.method == 'GET':
+        return render_template('login_page.j2')
+    elif request.method == 'POST':
+        return render_template('login_page.j2')
 
 @app.route('/findPetAdmin', methods=['GET', 'POST'])
 def findPetAdmin():
