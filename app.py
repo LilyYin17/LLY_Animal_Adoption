@@ -33,6 +33,31 @@ def signup_post():
             query = 'INSERT INTO Customers(email) VALUES (%s)'
             db.execute_query(db_connection, query, data)
             return render_template('landing_page.j2')
+#log in page
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login_page.j2')
+
+@app.route('/findPetAdmin', methods=['GET', 'POST'])
+def findPetAdmin():
+    return render_template('admin_Find_your_pet.j2')
+
+@app.route('/otherPets', methods=['GET', 'POST'])
+def otherPets():
+    return render_template('other_animal.j2')
+
+
+@app.route('/findPetCustomer', methods=['GET', 'POST'])
+def findPetCustomer():
+    return render_template('customer_Find_your_pet.j2')
+
+@app.route('/petDetail', methods=['GET', 'POST'])
+def petDetail():
+    return render_template('detailed_Find_your_pet.j2')
+
+@app.route('/addNewPet', methods=['GET', 'POST'])
+def addNewPet():
+    return render_template('new_pets.j2')
 
 #Listener
 if __name__ == "__main__":
