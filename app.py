@@ -34,6 +34,21 @@ def signup_post():
             db.execute_query(db_connection, query, data)
             return render_template('landing_page.j2')
 
+#adopt process page
+@app.route("/adopt-process")
+def adopt_process():
+    return render_template('adopt_process_page.html')
+
+#FAQs page
+@app.route("/faqs")
+def faqs():
+    return render_template('faqs_page.html')
+
+#about us page
+@app.route("/about-us")
+def about_us():
+    return render_template('about_us_page.html')
+
 #Listener
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 1234))
