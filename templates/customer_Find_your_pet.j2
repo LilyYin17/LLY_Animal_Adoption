@@ -1,0 +1,15 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2>Find Your Pet For Customer </h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/findPetCustomer_form.js') }}"></script>
+    <form id="FindPetCustomer_form" action="/findpet" onsubmit="return validateForm()" method="post" required>
+        <div class="container">
+            <p>Breed: <input type="text" name="breed"><br></p>
+            <p>Age: <input type="text" name="age"><br></p>
+            <p>Size: <input type="text" name="size"><br></p>
+            <p>Gender: <input type="text" name="gender"><br></p>
+            <p>Good With: <input type="text" name="goodWith"><br></p>
+            <p>Search<br></p>
+        </div>
+    <form>
+{% endblock %}
