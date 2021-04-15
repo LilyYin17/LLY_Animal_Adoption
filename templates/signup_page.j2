@@ -1,5 +1,6 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
+<h2>Register</h2>
 <script type=text/javascript src="{{ url_for('static', filename='/signup_form.js') }}"></script>
     <form id="signup_form" action="/signup" onsubmit="return validateForm()" method="post" required>
         <div class="container">

@@ -1,11 +1,12 @@
-from flask import Flask, render_template
-from flask import request, redirect
+from flask import Flask, render_template, session
+from flask import request, redirect, url_for
 from flaskext.mysql import MySQL
 import os
 import database.db_connector as db
 
 #Configuration
 app = Flask(__name__)
+app.secret_key = 'your secret key'
 
 #Routes
 #Landing page
@@ -13,11 +14,20 @@ app = Flask(__name__)
 def root():
     return render_template('landing_page.j2')
 
-#sign up page
+#Home page
+@app.route('/home')
+def home():
+    #check is user is logged in
+    if 'loggedin' in session:
+        return render_template('home_page.j2', username=session['username'])
+    #user is not logged in
+    return render_template('login_page.j2') 
+
+#Sign up page
 @app.route('/signup', methods=['GET','POST'])
-def signup_post():
+def signup():
     if request.method == 'GET':
-        return render_template('signup_form_page.j2')
+        return render_template('signup_page.j2')
     elif request.method == 'POST':
         db_connection = db.db_connection
         query = 'SELECT * FROM Customers WHERE email = %s'
@@ -29,14 +39,43 @@ def signup_post():
         if results:
             return render_template('user_already_exists_page.j2')
         else:
-            cursor = db.execute_query(db_connection, query, data)
-            query = 'INSERT INTO Customers(email) VALUES (%s)'
+            query = 'INSERT INTO Customers(email, password) VALUES (%s, %s)'
+            email = request.form['email']
+            psw = request.form['psw']
+            data = (email, psw)
             db.execute_query(db_connection, query, data)
-            return render_template('landing_page.j2')
-#log in page
+            return redirect(url_for('login'))
+
+#Log in page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login_page.j2')
+    if request.method == 'GET':
+        return render_template('login_page.j2')
+    elif request.method == 'POST':
+        db_connection = db.db_connection
+        #Check if account exists 
+        query = 'SELECT * FROM Customers WHERE email = %s AND password = %s'
+        email = request.form['email']
+        psw = request.form['password']
+        data = (email, psw)
+        cursor = db.execute_query(db_connection, query, data)
+        results = cursor.fetchall()
+        if results:
+            #Successful loggedin
+            session['loggedin'] = True
+            session['username'] = email
+            return redirect(url_for('home', variable=session['username']))
+        else:
+            #Account does not exist or username/password incorrect
+            return render_template('login_error.j2')
+
+#Log out
+@app.route('/logout')
+def logout():
+    #Remove session data
+    session.pop('loggedin', None)
+    session.pop('username', None)
+    return redirect(url_for('root'))
 
 @app.route('/findPetAdmin', methods=['GET', 'POST'])
 def findPetAdmin():

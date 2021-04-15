@@ -7,13 +7,22 @@
     <body>
         <div class="header"><h1>LLY Adoption Center</h1></div>
         <div class="topnav">
-            <a href="/">Home</a>
-            <div class="topnav-right">
-                <a href="/signup">Sign Up</a>
-                <a href="#">Sign In</a>
+            {% if session['loggedin'] %}
+                <a href="/home">Home</a>
+                <div class="topnav-right">
+                    <a href="#">Profile</a>
+                    <a href="/logout">Sign Out</a>
+            {% else %}
+                <a href="/">Home</a>
+                <div class="topnav-right">
+                    <a href="/signup">Sign Up</a>
+                    <a href="/login">Sign In</a>
+            {% endif %}
             </div>
         </div>
-        {% block content %}{% endblock %}
+        <div class ="content">
+            {% block content %}{% endblock %}
+        </div>
         <div class="footer">
             <a href="#">About Us</a>
             <a href="#">FAQs</a>

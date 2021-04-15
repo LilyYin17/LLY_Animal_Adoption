@@ -1,6 +1,6 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
-    <h2>login</h2>
+    <h2>Account doesnt exist or username/password incorrect, try again!</h2>
     <script type=text/javascript src="{{ url_for('static', filename='/login_form.js') }}"></script>
     <form id="login_form" action="/login" onsubmit="return validateForm()" method="post" required>
         <div class="container">

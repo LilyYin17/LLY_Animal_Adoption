@@ -49,8 +49,8 @@ def execute_query(db_connection = None, query = None, query_params = ()):
 
 if __name__ == '__main__':
     print("Executing a sample query on the database using the credentials from db_credentials.py")
-    # query = 'INSERT INTO Customers(email) VALUES ("yinli@oregonstate.edu")'
-    query = 'SELECT * FROM Customers'
+    query = 'INSERT INTO Customers(email, password) VALUES ("yinli@oregonstate.edu", "123")'
+    # query = 'SELECT * FROM Customers'
     results = execute_query(db_connection, query);
     print("Printing results of %s" % query)
 
