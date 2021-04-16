@@ -1,0 +1,20 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2>detailed pet</h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/detailedPage_form.js') }}"></script>
+    <form id="detailedPage_form" action="/detailedPet" onsubmit="return validateForm()" method="post" required>
+        <div class="container">
+            <img id="detailedImage" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=64">
+            
+            <h3>Name</h3>
+            <p>Shiba Inu</p>
+    
+            <h3>About</h3>
+            <p>Brought to America from Japan as recently as 60 years ago, Shibas are growing in popularity in the West and are already 
+            the most popular breed in their homeland. Their white markings combined with their coloring (red, red sesame, or black 
+            and tan) and their alert expression and smooth stride makes them almost foxlike. 
+            They’re sturdy, muscular dogs with a bold, confident personality to match. </p>
+
+        </div>
+    <form>
+{% endblock %}
