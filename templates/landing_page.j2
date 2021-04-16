@@ -1,27 +1,25 @@
-{% extends 'layouts/main.j2' %}
-{% block content %}
-    <div class="hintDiv">
-        <p>Click pictures to see available pets!</p>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>LLY Adoption Center</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+    </head>
 
-    <div class="catDiv">
-        <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
-        <div class="middle">
-            <a href="#">Browse Cats</a>
+    <body>
+        <div class="header"><h1>LLY Adoption Center</h1></div>
+        <div class="shelter-div">
+            <img src="/static/images/cat2.png">
+            <a class="landing-btn" href="#"><span>Shelter </span></a>
         </div>
-    </div>
 
-    <div class="dogDiv">
-        <img src="/static/images/dog1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
-        <div class="middle">
-            <a href="#">Browse Dogs</a>
+        <div class="adopter-div">
+            <img src="/static/images/dog2.png">
+            <a class="landing-btn" href="#"><span>Adopter </span></a>
         </div>
-    </div>
 
-    <div class="otherDiv">
-        <img src="/static/images/other1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
-        <div class="middle">
-            <a href="#">Browse Other Pets</a>
+        <div class="about-us">
+            <p>About us</p>
+        <br>
         </div>
-    </div>
-{% endblock %}
+    </body>
+</html>
