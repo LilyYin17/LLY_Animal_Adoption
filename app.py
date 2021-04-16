@@ -14,14 +14,84 @@ app.secret_key = 'your secret key'
 def root():
     return render_template('landing_page.j2')
 
-#Home page
-@app.route('/home')
-def home():
+#Adopter home page
+@app.route('/adopter_home')
+def adpoter_home():
     #check is user is logged in
-    if 'loggedin' in session:
-        return render_template('home_page.j2', username=session['username'])
+    if 'adopter_loggedin' in session:
+        return render_template('adopter_home.j2', username=session['username'])
     #user is not logged in
-    return render_template('login_page.j2') 
+    return render_template('adopter_login.j2') 
+
+#Shelter home page
+@app.route('/shelter_home')
+def shelter_home():
+    #check is user is logged in
+    if 'shelter_loggedin' in session:
+        return render_template('shelter_home.j2', username=session['username'])
+    #user is not logged in
+    return render_template('shelter_login.j2') 
+
+#Shelter log in page
+@app.route('/shelter_login', methods=['GET', 'POST'])
+def shelter_login():
+    if request.method == 'GET':
+        return render_template('shelter_login.j2')
+    elif request.method == 'POST':
+        db_connection = db.db_connection
+        #Check if account exists 
+        query = 'SELECT * FROM Customers WHERE email = %s AND password = %s'
+        email = request.form['email']
+        psw = request.form['password']
+        data = (email, psw)
+        cursor = db.execute_query(db_connection, query, data)
+        results = cursor.fetchall()
+        if results:
+            #Successful loggedin
+            session['username'] = email
+            if email == 'admin@oregonstate.edu': #If user is admin
+                session['shelter_loggedin'] = True
+                return redirect(url_for('shelter_home', variable=session['username']))
+            else: #If user is regular customer
+                return render_template('shelter_login_error.j2')
+        else:
+            #Account does not exist or username/password incorrect
+            return render_template('shelter_login_error.j2')
+
+#Adopter log in page
+@app.route('/adopter_login', methods=['GET', 'POST'])
+def adopter_login():
+    if request.method == 'GET':
+        return render_template('adopter_login.j2')
+    elif request.method == 'POST':
+        db_connection = db.db_connection
+        #Check if account exists 
+        query = 'SELECT * FROM Customers WHERE email = %s AND password = %s'
+        email = request.form['email']
+        psw = request.form['password']
+        data = (email, psw)
+        cursor = db.execute_query(db_connection, query, data)
+        results = cursor.fetchall()
+        if results:
+            #Successful loggedin
+            session['username'] = email
+            if email == 'admin@oregonstate.edu': #If user is admin
+                return render_template('adopter_login_error.j2')
+            else: #If user is regular customer
+                session['adopter_loggedin'] = True
+                return redirect(url_for('adpoter_home', variable=session['username']))
+        else:
+            #Account does not exist or username/password incorrect
+            return render_template('adopter_login_error.j2')
+
+#Log out
+@app.route('/logout')
+def logout():
+    #Remove session data
+    session.pop('shelter_loggedin', None)
+    session.pop('adopter_loggedin', None)
+    session.pop('username', None)
+    return redirect(url_for('root'))
 
 #Sign up page
 @app.route('/signup', methods=['GET','POST'])
@@ -44,38 +114,7 @@ def signup():
             psw = request.form['psw']
             data = (email, psw)
             db.execute_query(db_connection, query, data)
-            return redirect(url_for('login'))
-
-#Log in page
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-        return render_template('login_page.j2')
-    elif request.method == 'POST':
-        db_connection = db.db_connection
-        #Check if account exists 
-        query = 'SELECT * FROM Customers WHERE email = %s AND password = %s'
-        email = request.form['email']
-        psw = request.form['password']
-        data = (email, psw)
-        cursor = db.execute_query(db_connection, query, data)
-        results = cursor.fetchall()
-        if results:
-            #Successful loggedin
-            session['loggedin'] = True
-            session['username'] = email
-            return redirect(url_for('home', variable=session['username']))
-        else:
-            #Account does not exist or username/password incorrect
-            return render_template('login_error.j2')
-
-#Log out
-@app.route('/logout')
-def logout():
-    #Remove session data
-    session.pop('loggedin', None)
-    session.pop('username', None)
-    return redirect(url_for('root'))
+            return redirect(url_for('adopter_login'))
 
 @app.route('/findPetAdmin', methods=['GET', 'POST'])
 def findPetAdmin():
