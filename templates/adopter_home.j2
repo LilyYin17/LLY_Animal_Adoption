@@ -1,28 +1,29 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
-    <h2>Welcome back, {{ username }}!</h2>
-    <div class="hintDiv">
-        <p>Click pictures to see available pets!</p>
-    </div>
+    <h3 style="color:#404040;position:relative;top:10px;">Welcome back, {{ username }}! Click pictures to see available pets!</h3>
 
     <div class="catDiv">
-        <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
+        <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
         <div class="middle">
             <a href="#">Browse Cats</a>
         </div>
     </div>
 
     <div class="dogDiv">
-        <img src="/static/images/dog1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
+        <img src="/static/images/dog1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
         <div class="middle">
             <a href="#">Browse Dogs</a>
         </div>
     </div>
 
     <div class="otherDiv">
-        <img src="/static/images/other1.jpg" class="landingImg" style="width:100%;border-radius: 25px;">
+        <img src="/static/images/other1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
         <div class="middle">
             <a href="#">Browse Other Pets</a>
         </div>
+    </div>
+
+    <div class="contact">
+        <pre>    *** For any questions, contact us at: Email - lly_adoption@gmail.com; Phone - 123-456-7890.</pre>
     </div>
 {% endblock %}
