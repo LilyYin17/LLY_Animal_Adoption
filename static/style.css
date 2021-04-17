@@ -137,15 +137,6 @@ body {
   float: right;
 }
 
-/* Style the hint text in the landing page */
-.hintDiv {
-  font-size: 125%;
-  font-weight: bold;
-  color: #404040;
-  position: relative;
-  top: 10px;
-}
-
 /* Style the cat block in landing page */
 .catDiv {
   height: 300px;
@@ -230,4 +221,14 @@ body {
   font-size: 15px;
   padding: 15px 30px;
   text-decoration: none;
+}
+
+/* Style the contact div on adopter home page */
+.contact {
+  border-top-style: solid;
+  border-color: #bfbfbf;
+  color: #404040;
+  text-align: left;
+  position: relative;
+  top: -535px;
 }
