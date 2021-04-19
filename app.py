@@ -139,7 +139,7 @@ def profile(id):
         email = request.form['email']
         query = "UPDATE Customers SET firstName='%s', lastName='%s', customerPhone='%s', email='%s' WHERE customerID=%d;" % (fname, lname, phone, email, user_id)
         db.execute_query(db_connection, query)
-        return render_template('adopter_home.j2', value=user_id)
+        return redirect(url_for('adpoter_home', variable=user_id))
 
 @app.route('/findPetAdmin', methods=['GET', 'POST'])
 def findPetAdmin():
