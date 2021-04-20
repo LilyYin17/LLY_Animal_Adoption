@@ -12,6 +12,7 @@ app.secret_key = 'your secret key'
 #Improt dogs.py
 app.register_blueprint(dogs_api)
 
+
 #Routes
 #Landing page
 @app.route('/')
@@ -153,7 +154,6 @@ def findPetAdmin():
 def otherPets():
     return render_template('other_animal.j2')
 
-
 @app.route('/findPetCustomer', methods=['GET', 'POST'])
 def findPetCustomer():
     return render_template('customer_Find_your_pet.j2')
@@ -165,6 +165,7 @@ def petDetail():
 @app.route('/addNewPet', methods=['GET', 'POST'])
 def addNewPet():
     return render_template('new_pets.j2')
+
 
 #Listener
 if __name__ == "__main__":
