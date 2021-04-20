@@ -82,6 +82,10 @@ flask --version
 ├── app.py  
 ├── wsgi.py 
 ├── venv               <= Should be in your .gitignore
+├── pets/
+│    ├ cats.py
+│    ├ dogs.py           <= APIs for different type of pets
+│    ├ others.py             
 ├── templates/
 │    ├ landing_page.j2
 │    ├ login_page.j2
