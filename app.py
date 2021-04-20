@@ -3,10 +3,14 @@ from flask import request, redirect, url_for
 from flaskext.mysql import MySQL
 import os
 import database.db_connector as db
+from pets.dogs import dogs_api
 
 #Configuration
 app = Flask(__name__)
 app.secret_key = 'your secret key'
+
+#Improt dogs.py
+app.register_blueprint(dogs_api)
 
 #Routes
 #Landing page
@@ -19,7 +23,7 @@ def root():
 def adpoter_home():
     #check is user is logged in
     if 'adopter_loggedin' in session:
-        return render_template('adopter_home.j2', username=session['username'])
+        return render_template('adopter_home.j2', userID=session['userID'])
     #user is not logged in
     return render_template('adopter_login.j2') 
 
@@ -28,7 +32,7 @@ def adpoter_home():
 def shelter_home():
     #check is user is logged in
     if 'shelter_loggedin' in session:
-        return render_template('shelter_home.j2', username=session['username'])
+        return render_template('shelter_home.j2', userID=session['userID'])
     #user is not logged in
     return render_template('shelter_login.j2') 
 
@@ -51,10 +55,13 @@ def shelter_login():
             session['username'] = email
             if email == 'admin@oregonstate.edu': #If user is admin
                 session['shelter_loggedin'] = True
-                return redirect(url_for('shelter_home', variable=session['username']))
+                session['userID'] = results[0]["customerID"]
+                return redirect(url_for('shelter_home', variable=session['userID']))
             else: #If user is regular customer
                 return render_template('shelter_login_error.j2')
         else:
+            cursor.close()
+            db_connection.close()
             #Account does not exist or username/password incorrect
             return render_template('shelter_login_error.j2')
 
@@ -75,11 +82,12 @@ def adopter_login():
         if results:
             #Successful loggedin
             session['username'] = email
+            session['userID'] = results[0]["customerID"]
             if email == 'admin@oregonstate.edu': #If user is admin
                 return render_template('adopter_login_error.j2')
             else: #If user is regular customer
                 session['adopter_loggedin'] = True
-                return redirect(url_for('adpoter_home', variable=session['username']))
+                return redirect(url_for('adpoter_home', variable=session['userID']))
         else:
             #Account does not exist or username/password incorrect
             return render_template('adopter_login_error.j2')
@@ -91,6 +99,7 @@ def logout():
     session.pop('shelter_loggedin', None)
     session.pop('adopter_loggedin', None)
     session.pop('username', None)
+    session.pop('userID', None)
     return redirect(url_for('root'))
 
 #Sign up page
@@ -115,6 +124,26 @@ def signup():
             data = (email, psw)
             db.execute_query(db_connection, query, data)
             return redirect(url_for('adopter_login'))
+
+#Profile page
+@app.route('/profile/<int:id>', methods=['GET','POST'])
+def profile(id):
+    user_id = id
+    db_connection = db.db_connection
+    if request.method == 'GET':
+        query = 'SELECT * FROM Customers WHERE customerID=%d;' % (id)
+        cursor = db.execute_query(db_connection, query)
+        results = cursor.fetchall()
+        cursor.close()
+        return render_template('profile_page.j2', users=results, value=user_id)
+    elif request.method == 'POST':
+        fname = request.form['fname']
+        lname = request.form['lname']
+        phone = request.form['phone']
+        email = request.form['email']
+        query = "UPDATE Customers SET firstName='%s', lastName='%s', customerPhone='%s', email='%s' WHERE customerID=%d;" % (fname, lname, phone, email, user_id)
+        db.execute_query(db_connection, query)
+        return redirect(url_for('adpoter_home', variable=user_id))
 
 @app.route('/findPetAdmin', methods=['GET', 'POST'])
 def findPetAdmin():
