@@ -1,7 +1,7 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
     <h2>Adopter Login</h2>
-    <script type=text/javascript src="{{ url_for('static', filename='/login_form.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='/adopter_login_form.js') }}"></script>
     <form id="adopter_login_form" action="/adopter_login" onsubmit="return validateForm()" method="post" required>
         <div class="container">
             <p>Email: <input type="text" name="email"><br></p>

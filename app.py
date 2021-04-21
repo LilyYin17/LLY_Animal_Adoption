@@ -66,7 +66,6 @@ def shelter_login():
                 return render_template('shelter_login_error.j2')
         else:
             cursor.close()
-            db_connection.close()
             #Account does not exist or username/password incorrect
             return render_template('shelter_login_error.j2')
 
