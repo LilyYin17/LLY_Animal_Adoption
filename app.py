@@ -4,6 +4,7 @@ from flaskext.mysql import MySQL
 import os
 import database.db_connector as db
 from pets.dogs import dogs_api
+from pets.crud import crud_api
 
 #Configuration
 app = Flask(__name__)
@@ -11,6 +12,9 @@ app.secret_key = 'your secret key'
 
 #Improt dogs.py
 app.register_blueprint(dogs_api)
+
+#Improt crud.py
+app.register_blueprint(crud_api)
 
 
 #Routes
