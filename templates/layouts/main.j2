@@ -18,6 +18,9 @@
                 </div>
             {% elif session['adopter_loggedin'] %}
                 <a href="/adopter_home">Adopter Home</a>
+                <a href="/browse_dogs">Dogs</a>
+                <a href="#">Cats</a>
+                <a href="#">Others</a>
                 <div class="topnav-right">
                     <a href="/profile/{{ session['userID'] }}">Profile</a>
                     <a href="/logout">Sign Out</a>
