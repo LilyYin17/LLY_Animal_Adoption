@@ -5,6 +5,9 @@ from flask import Blueprint
 crud_api = Blueprint('crud_api', __name__)
 
 #Routes
-@crud_api.route('/add_new_pets')
+@crud_api.route('/add_new_pets', methods=['GET', 'POST'])
 def add_new_pets():
-    return render_template('add_new_pets.j2')
+    if request.method == 'GET':
+        return render_template('add_new_pets.j2')
+    elif request.method == 'POST':
+        return render_template('browse_dogs.j2')
