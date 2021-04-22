@@ -14,7 +14,6 @@ CREATE TABLE `Customers` (
 	CONSTRAINT `email` UNIQUE (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 
-<<<<<<< HEAD
 INSERT INTO adoptionproject.Customers (email, password) VALUES ('admin@oregonstate.edu', '1234');
 
 --
@@ -38,6 +37,3 @@ CREATE TABLE `Pets` (
 	`availability` varchar(255) NOT NULL,
 	PRIMARY KEY (`petsID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
-=======
-
->>>>>>> implement the add new pet page for admin

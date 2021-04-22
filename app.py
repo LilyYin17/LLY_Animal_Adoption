@@ -5,10 +5,13 @@ import os
 import database.db_connector as db
 from pets.dogs import dogs_api
 from pets.crud import crud_api
+from werkzeug.utils import secure_filename
 
 #Configuration
 app = Flask(__name__)
 app.secret_key = 'your secret key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///img.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Improt dogs.py
 app.register_blueprint(dogs_api)

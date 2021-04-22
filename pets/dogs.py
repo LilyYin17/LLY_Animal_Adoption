@@ -4,6 +4,7 @@ from flaskext.mysql import MySQL
 import database.db_connector as db
 from pets.crud import crud_api
 from flask import Blueprint
+from base64 import b64encode
 
 dogs_api = Blueprint('dogs_api', __name__)
 
@@ -16,7 +17,7 @@ def browse_dogs():
 @dogs_api.route('/dogs_archive')
 def dogs_archive():
     db_connection = db.db_connection
-    query = 'SELECT * FROM Pets WHERE petsID = "%s";' % (221)
+    query = 'SELECT * FROM Pets WHERE name = "%s";' % ("Lily")
     cursor = db.execute_query(db_connection, query)
     results = cursor.fetchall()
     return render_template('dogs_archive.j2', dogs=results)
