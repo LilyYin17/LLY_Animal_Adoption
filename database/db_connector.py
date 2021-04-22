@@ -3,11 +3,6 @@ pymysql.install_as_MySQLdb()
 import MySQLdb
 from flaskext.mysql import MySQL
 
-host = 'cs467-instance.cnm3wt0bg4mw.us-west-1.rds.amazonaws.com'
-user = 'admin'
-passwd = 'OregonCS467' 
-db = 'adpotionproject'
-
 db_connection = pymysql.connect(host = 'cs467-instance.cnm3wt0bg4mw.us-west-1.rds.amazonaws.com',
                         user = 'admin',
                         passwd = 'OregonCS467', 
