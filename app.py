@@ -4,6 +4,7 @@ from flaskext.mysql import MySQL
 import os
 import database.db_connector as db
 from pets.dogs import dogs_api
+from pets.crud import crud_api
 
 #Configuration
 app = Flask(__name__)
@@ -11,6 +12,10 @@ app.secret_key = 'your secret key'
 
 #Improt dogs.py
 app.register_blueprint(dogs_api)
+
+#Improt crud.py
+app.register_blueprint(crud_api)
+
 
 #Routes
 #Landing page
@@ -61,7 +66,6 @@ def shelter_login():
                 return render_template('shelter_login_error.j2')
         else:
             cursor.close()
-            db_connection.close()
             #Account does not exist or username/password incorrect
             return render_template('shelter_login_error.j2')
 
@@ -153,7 +157,6 @@ def findPetAdmin():
 def otherPets():
     return render_template('other_animal.j2')
 
-
 @app.route('/findPetCustomer', methods=['GET', 'POST'])
 def findPetCustomer():
     return render_template('customer_Find_your_pet.j2')
@@ -165,6 +168,7 @@ def petDetail():
 @app.route('/addNewPet', methods=['GET', 'POST'])
 def addNewPet():
     return render_template('new_pets.j2')
+
 
 #Listener
 if __name__ == "__main__":

@@ -9,11 +9,18 @@
         <div class="topnav">
             {% if session['shelter_loggedin'] %}
                 <a href="/shelter_home">Shelter Home</a>
+                <a href="/dogs_archive">Dogs</a>
+                <a href="#">Cats</a>
+                <a href="#">Others</a>
+                <a href="/add_new_pets">New pets</a>
                 <div class="topnav-right">
                     <a href="/logout">Sign Out</a>
                 </div>
             {% elif session['adopter_loggedin'] %}
                 <a href="/adopter_home">Adopter Home</a>
+                <a href="/browse_dogs">Dogs</a>
+                <a href="#">Cats</a>
+                <a href="#">Others</a>
                 <div class="topnav-right">
                     <a href="/profile/{{ session['userID'] }}">Profile</a>
                     <a href="/logout">Sign Out</a>
@@ -23,7 +30,6 @@
                 <a href="/">Adopter Home</a>
                 <div class="topnav-right">
                     <a href="/signup">Sign Up</a>
-                    <a href="/login">Sign In</a>
                 </div>
             {% endif %}
             </div>

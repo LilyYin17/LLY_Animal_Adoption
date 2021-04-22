@@ -1,6 +1,6 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
-    <h3 style="color:#404040;position:relative;top:10px;">Welcome back, {{ username }}! Click pictures to see available pets!</h3>
+    <h3 style="color:#404040;position:relative;top:10px;">Welcome back, {{ session['username'] }}! Click pictures to see available pets!</h3>
 
     <div class="catDiv">
         <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius:25px;">

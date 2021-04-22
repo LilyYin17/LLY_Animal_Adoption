@@ -1,0 +1,17 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2> All Dogs </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Gender</th>
+                <th>Availability</th>
+                <th colspan="3">Actions</th>
+            </tr>
+    </table>
+
+    <p><button onclick="location.href='/add_new_pets'">Add new pet</button></p>
+{% endblock %}
