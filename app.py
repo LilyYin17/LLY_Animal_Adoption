@@ -129,6 +129,7 @@ def signup():
             db.execute_query(db_connection, query, data)
             return redirect(url_for('adopter_login'))
 
+<<<<<<< HEAD
 #Profile page
 @app.route('/profile/<int:id>', methods=['GET','POST'])
 def profile(id):
@@ -152,22 +153,68 @@ def profile(id):
 @app.route('/findPetAdmin', methods=['GET', 'POST'])
 def findPetAdmin():
     return render_template('admin_Find_your_pet.j2')
+=======
+>>>>>>> implement the add new pet page for admin
 
-@app.route('/otherPets', methods=['GET', 'POST'])
-def otherPets():
-    return render_template('other_animal.j2')
+@app.route('/admin_find_your_pet', methods=['GET', 'POST'])
+def admin_find_your_pet():
+    return render_template('admin_find_your_pet.j2')
 
+<<<<<<< HEAD
 @app.route('/findPetCustomer', methods=['GET', 'POST'])
 def findPetCustomer():
     return render_template('customer_Find_your_pet.j2')
+=======
+@app.route('/customer_find_your_pet', methods=['GET', 'POST'])
+def customer_find_your_pet():
+    return render_template('customer_find_your_pet.j2')
 
-@app.route('/petDetail', methods=['GET', 'POST'])
-def petDetail():
-    return render_template('detailed_Find_your_pet.j2')
+@app.route('/admin_detailed_find_your_pet', methods=['GET', 'POST'])
+def admin_detailed_find_your_pet():
+    return render_template('admin_detailed_find_your_pet.j2')
+>>>>>>> implement the add new pet page for admin
 
-@app.route('/addNewPet', methods=['GET', 'POST'])
-def addNewPet():
-    return render_template('new_pets.j2')
+@app.route('/customer_detailed_find_your_pet', methods=['GET', 'POST'])
+def customer_detailed_find_your_pet():
+    return render_template('customer_detailed_find_your_pet.j2')
+
+@app.route('/admin_other_pets', methods=['GET', 'POST'])
+def admin_other_pets():
+    return render_template('admin_other_pets.j2')
+
+@app.route('/customer_other_pets', methods=['GET', 'POST'])
+def customer_other_pets():
+    return render_template('customer_other_pets.j2')
+
+
+@app.route('/admin_new_pets', methods=['GET', 'POST'])
+def admin_new_pets():
+    if request.method == 'GET':
+        return render_template('admin_new_pets.j2')
+
+    elif request.method == 'POST':
+            query = 'INSERT INTO Pets(type, name, img, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+            type = request.form['type']
+            name = request.form['name']
+            img= request.form['img']
+            breed = request.form['breed']
+            age = request.form['age']
+            size = request.form['size']
+            gender = request.form['gender']
+            goodWithKids = request.form['goodWithKids']
+            goodWithDogs = request.form['goodWithDogs']
+            goodWithCats = request.form['goodWithCats']
+            mustBeLeashed = request.form['mustBeLeashed']
+            availability = request.form['availability']
+            data = (type, name, img, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability)
+            db.execute_query(db.db_connection, query, data)
+            # return redirect(url_for('admin_new_pets'))
+            return redirect(url_for('admin_add_new_pet_result'))
+
+@app.route('/admin_add_new_pet_result', methods=['GET', 'POST'])
+def admin_add_new_pet_result():
+    return render_template('admin_add_new_pet_result.j2')
+
 
 
 #Listener

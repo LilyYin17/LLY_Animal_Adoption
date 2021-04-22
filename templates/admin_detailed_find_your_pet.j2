@@ -1,0 +1,21 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2>detailed pet</h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/admin_detailed_find_your_pet_form.js') }}"></script>
+    <form id="admin_detailed_find_your_pet_form" action="/admin_detailed_find_your_pet" onsubmit="return validateForm()" method="post" required>
+
+        <div class="container">
+            <img id="detailedImage" src="https://trupanion.com/blog/wp-content/uploads/2017/02/cat-1646566_640.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=64">
+            
+            <h3>Name</h3>
+            <p>Domestic Shorthair</p>
+    
+            <h3>About</h3>
+            <p>The Domestic shorthair comes in a wide array of colors, sizes, and statures, 
+            though they tend to be medium-sized and muscular. They have short, 
+            sleek coats and round heads and paws. Because of their mixed parentage,
+            Domestic Shorthairs don't tend to be at-risk for any unusual health complications.</p>
+
+        </div>
+    <form>
+{% endblock %}
