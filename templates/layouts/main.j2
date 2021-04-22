@@ -16,22 +16,13 @@
                 <a href="/dogs_archive">Dogs</a>
                 <a href="#">Cats</a>
                 <a href="#">Others</a>
-                <a href="/add_new_pets">New pets</a>
+                <a href="/admin_new_pets">New pets</a>
                 <div class="topnav-right">
                     <a href="/logout">Sign Out</a>
                 </div>
             {% elif session['adopter_loggedin'] %}
-<<<<<<< HEAD
                 <a href="/adopter_home">Adopter Home</a>
-                <a href="/browse_dogs">Dogs</a>
-                <a href="#">Cats</a>
-                <a href="#">Others</a>
-=======
-                <a href="/shelter_home">Shelter</a>
-                <a href="/adopter_home">Adopter</a>
                 <a href="/customer_find_your_pet">Find your pet</a>
-                
->>>>>>> implement the add new pet page for admin
                 <div class="topnav-right">
                     <a href="/profile/{{ session['userID'] }}">Profile</a>
                     <a href="/logout">Sign Out</a>

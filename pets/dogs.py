@@ -1,5 +1,7 @@
 from flask import Flask, render_template, session
 from flask import request, redirect, url_for
+from flaskext.mysql import MySQL
+import database.db_connector as db
 from pets.crud import crud_api
 from flask import Blueprint
 
@@ -13,4 +15,8 @@ def browse_dogs():
 #Dogs Archive page, show all dogs
 @dogs_api.route('/dogs_archive')
 def dogs_archive():
-    return render_template('dogs_archive.j2')
+    db_connection = db.db_connection
+    query = 'SELECT * FROM Pets WHERE petsID = "%s";' % (221)
+    cursor = db.execute_query(db_connection, query)
+    results = cursor.fetchall()
+    return render_template('dogs_archive.j2', dogs=results)

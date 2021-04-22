@@ -12,6 +12,9 @@
                 <th colspan="3">Actions</th>
             </tr>
     </table>
-
-    <p><button onclick="location.href='/add_new_pets'">Add new pet</button></p>
+    {% for dog in dogs %}
+        <p>{{ dog['name'] }}</p>
+        <img src={{ dog['img'] }}>
+    {% endfor %}
+    <p><button onclick="location.href='/admin_new_pets'">Add new pet</button></p>
 {% endblock %}
