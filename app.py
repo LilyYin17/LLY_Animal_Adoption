@@ -129,7 +129,6 @@ def signup():
             db.execute_query(db_connection, query, data)
             return redirect(url_for('adopter_login'))
 
-<<<<<<< HEAD
 #Profile page
 @app.route('/profile/<int:id>', methods=['GET','POST'])
 def profile(id):
@@ -150,34 +149,25 @@ def profile(id):
         db.execute_query(db_connection, query)
         return redirect(url_for('adpoter_home', variable=user_id))
 
-@app.route('/findPetAdmin', methods=['GET', 'POST'])
-def findPetAdmin():
-    return render_template('admin_Find_your_pet.j2')
-=======
->>>>>>> implement the add new pet page for admin
-
+#Find your pet page
 @app.route('/admin_find_your_pet', methods=['GET', 'POST'])
 def admin_find_your_pet():
     return render_template('admin_find_your_pet.j2')
 
-<<<<<<< HEAD
-@app.route('/findPetCustomer', methods=['GET', 'POST'])
-def findPetCustomer():
-    return render_template('customer_Find_your_pet.j2')
-=======
 @app.route('/customer_find_your_pet', methods=['GET', 'POST'])
 def customer_find_your_pet():
     return render_template('customer_find_your_pet.j2')
 
+#Detailed pet page
 @app.route('/admin_detailed_find_your_pet', methods=['GET', 'POST'])
 def admin_detailed_find_your_pet():
     return render_template('admin_detailed_find_your_pet.j2')
->>>>>>> implement the add new pet page for admin
 
 @app.route('/customer_detailed_find_your_pet', methods=['GET', 'POST'])
 def customer_detailed_find_your_pet():
     return render_template('customer_detailed_find_your_pet.j2')
 
+#Other pet page
 @app.route('/admin_other_pets', methods=['GET', 'POST'])
 def admin_other_pets():
     return render_template('admin_other_pets.j2')
@@ -186,7 +176,7 @@ def admin_other_pets():
 def customer_other_pets():
     return render_template('customer_other_pets.j2')
 
-
+#admin add new pet page
 @app.route('/admin_new_pets', methods=['GET', 'POST'])
 def admin_new_pets():
     if request.method == 'GET':
@@ -214,7 +204,6 @@ def admin_new_pets():
 @app.route('/admin_add_new_pet_result', methods=['GET', 'POST'])
 def admin_add_new_pet_result():
     return render_template('admin_add_new_pet_result.j2')
-
 
 
 #Listener
