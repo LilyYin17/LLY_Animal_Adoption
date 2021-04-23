@@ -2,7 +2,7 @@
 {% block content %} 
     <h2> Add new pets </h2>
     <script type=text/javascript src="{{ url_for('static', filename='/admin_new_pets_form.js') }}"></script>
-    <form id="admin_new_pets_form" action="/admin_new_pets" onsubmit="return validateForm()" method="post" required>
+    <form id="admin_new_pets_form" action="/admin_new_pets" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required>
         <p>type: <select name="type">
             <option value="dog">dog</option>
             <option value="cat">cat</option>
@@ -50,8 +50,7 @@
             <option value="adopted">adopted</option>
             <br></select>
         </p>
-        <!--<p>Photo: <input type="file" name="img"></p>
-        <!-- option 2: <p>Photo: <input type="file" id="fileupload" name="file" multiple></p> -->
+        <p>Photo: <input type="file" accept=".jpg,.jpeg,.png,.bmp" name="img"></p>
         <p><input type="submit" value="Add new pet"></p>
     </form>
 {% endblock %}

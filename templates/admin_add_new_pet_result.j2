@@ -1,6 +1,5 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
-    <script type=text/javascript src="{{ url_for('static', filename='/admin_add_new_pet_result_form.js') }}"></script>
     <form id="admin_add_new_pet_result_form" action="/admin_add_new_pet_result" onsubmit="return validateForm()" method="post" required>
         <div class="container">
 
