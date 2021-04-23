@@ -17,7 +17,7 @@ def browse_dogs():
 @dogs_api.route('/dogs_archive')
 def dogs_archive():
     db_connection = db.db_connection
-    query = 'SELECT * FROM Pets WHERE name = "%s";' % ("Lily10")
+    query = 'SELECT * FROM Pets WHERE type = "%s";' % ("dog")
     cursor = db.execute_query(db_connection, query)
     results = cursor.fetchall()
     return render_template('dogs_archive.j2', dogs=results, base64=base64)
