@@ -14,4 +14,9 @@ function validateForm() {
         alert("age must be filled out");
         return false;
     }
+    var img = document.forms["admin_new_pets_form"]["img"].value;
+    if (img == "" || img == null) {
+        alert("no file selected");
+        return false;
+    }
 }
