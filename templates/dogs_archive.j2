@@ -14,7 +14,7 @@
     </table>
     {% for dog in dogs %}
         <p>{{ dog['name'] }}</p>
-        <img alt="Embedded Image" src="data:image/png;base64,{{ dog['img'] }}" style="width:50px;height:50px;"/>
+        <p> <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" width="200" height="120" alt="img"></p>
     {% endfor %}
     <p><button onclick="location.href='/admin_new_pets'">Add new pet</button></p>
 {% endblock %}

@@ -3,6 +3,7 @@ from flask import request, redirect, url_for
 from flaskext.mysql import MySQL
 from flask import Blueprint
 import database.db_connector as db
+import base64
 
 crud_api = Blueprint('crud_api', __name__)
 
@@ -17,7 +18,7 @@ def admin_new_pets():
         query = 'INSERT INTO Pets(type, name, img, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
         type = request.form['type']
         name = request.form['name']
-        img = request.form['img']
+        img = request.files['img'].read()
         breed = request.form['breed']
         age = request.form['age']
         size = request.form['size']
@@ -27,6 +28,7 @@ def admin_new_pets():
         goodWithCats = request.form['goodWithCats']
         mustBeLeashed = request.form['mustBeLeashed']
         availability = request.form['availability']
+
         data = (type, name, img, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability)
         db.execute_query(db.db_connection, query, data)
         
