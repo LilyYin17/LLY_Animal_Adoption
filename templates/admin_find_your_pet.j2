@@ -3,13 +3,46 @@
     <h2 class="page-name">Find Your Pet</h2>
     <script type=text/javascript src="{{ url_for('static', filename='admin_find_your_pet_form.js') }}"></script>
     <form id="admin_find_your_pet_form" action="/admin_find_your_pet" onsubmit="return validateForm()" method="post" required>
-        <div class="container">
-            <pre>    Breed: <input type="text" name="breed"><br></pre>
-            <pre>      Age: <input type="text" name="age"><br></pre>
-            <pre>     Size: <input type="text" name="size"><br></pre>
-            <pre>   Gender: <input type="text" name="gender"><br></pre>
-            <pre>Good With: <input type="text" name="goodWith"><br></pre>
-            <br>
+            
+         <p>type: <select name="type">
+            <option value="dog">dog</option>
+            <option value="cat">cat</option>
+            <option value="others">others</option>
+            <br></select>
+        </p>
+        <p>breed: <input type="text" name="breed"><br></p>
+        <p>name: <input type="text" name="name"><br></p>
+        <p>age (months): <input type="number" name="age" min="0"><br></p>
+        <p>size: <select name="size">
+            <option value="null"> </option>
+            <option value="small">small (0-25 lbs)</option>
+            <option value="medium">medium (26-60 lbs)</option>
+            <option value="large">large (61-100 lbs)</option>
+            <option value="extra large">extra large (101 lbs or more)</option>
+            <br></select>
+        </p>
+        <p>gender: <select name="gender">
+            <option value="male">any</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <br></select>
+        </p>
+        <p>good with kids: <select name="goodWithKids">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+            <br></select>
+        </p>
+        <p>good with other dogs: <select name="goodWithDogs">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+            <br></select>
+        </p>
+        <p>good with other cats: <select name="goodWithCats">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+            <br></select>
+        </p>
+
 
             {# TODO: Remove the hyperlink. When search functionality is implemented, 
                         it should redirect after form submit#}
@@ -18,6 +51,6 @@
             </a>
             <br><br>
 
-        </div>
+
     <form>
 {% endblock %}
