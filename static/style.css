@@ -256,3 +256,36 @@ tr:nth-of-type(2n + 2) {
 tr:nth-of-type(2n + 3) {
   background-color: #DDDDDD;
 }
+
+.page-name{
+  color: #404040;
+  position: relative;
+  top: 10px;
+}
+
+.container {
+  width: 25%;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  position: relative;
+  top: 25px;
+  left: 565px;
+  font-size: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.container button {
+  background-color: #404040;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.container button:hover {
+  background-color: #262626;
+}
