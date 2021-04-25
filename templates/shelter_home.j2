@@ -1,9 +1,27 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
-    <h2> Manage all Pets </h2>
-    <p><button onclick="location.href='/dogs_archive'">Dogs Archive</button></p>
-    <p><button onclick="location.href='/cats_archive'">Cats Archive</button></p>
-    <p><button onclick="location.href='/others_archive'">All Other Pets Archive</button></p>
-    <a href="/admin_find_your_pet">Find a pet</a>
-    <a href="/admin_new_pets">Add a new pet</a>
+    <h2 class="page-name"> Manage all Pets </h2>
+    <div class="shelter-home-link">
+        <a href="/dogs_archive">Manage Dogs Profiles</a>
+    </div>
+    <br>
+
+    <div class="shelter-home-link">
+        <a href="/cats_archive">Manage Cats Profiles</a>
+    </div>
+    <br>
+
+    <div class="shelter-home-link">
+        <a href="/others_archive">Manage Other Pets Profiles</a>
+    </div>
+    <br>
+
+    <div class="shelter-home-link">
+        <a href="/admin_find_your_pet">Find A Pet</a><br>
+    </div>
+    <br>
+
+    <div class="shelter-home-link">
+        <a href="/admin_new_pets">Add A New Pet</a><br>
+    </div>
 {% endblock %}
