@@ -10,7 +10,7 @@ cats_api = Blueprint('cats_api', __name__)
 
 #Cats Archive page, show all cats
 @cats_api.route('/cats_archive')
-def dogs_archive():
+def cats_archive():
     db_connection = db.db_connection
     query = 'SELECT * FROM Pets WHERE type = "%s";' % ("cat")
     cursor = db.execute_query(db_connection, query)
