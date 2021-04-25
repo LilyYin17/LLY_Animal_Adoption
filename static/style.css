@@ -289,3 +289,24 @@ tr:nth-of-type(2n + 3) {
 .container button:hover {
   background-color: #262626;
 }
+
+.shelter-home-link {
+  height: 55px;
+  width: 500px;
+  border-radius: 5px;
+  background-color: #bfbfbf;
+  position: relative;
+  left: 500px;
+  top: 20px;
+}
+
+.shelter-home-link a {
+  color: #1a1a1a;
+  text-decoration: none;
+  position: relative;
+  top: 20px;
+}
+
+.shelter-home-link a:hover {
+  color: #ffffff;
+}
