@@ -20,7 +20,7 @@ def admin_new_pets():
         query = 'INSERT INTO Pets(type, name, img, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
         type = request.form['type']
         name = request.form['name']
-        img = request.form['img']
+        img = request.files['img'].read()
         breed = request.form['breed']
         age = request.form['age']
         size = request.form['size']
@@ -34,6 +34,7 @@ def admin_new_pets():
         db.execute_query(db.db_connection, query, data)
         
         return redirect(url_for('admin_add_new_pet_result'))
+
 
 #Admin find a pet page
 @crud_api.route('/admin_find_your_pet', methods=['GET', 'POST'])
@@ -85,5 +86,7 @@ def admin_find_your_pet():
         results = cursor.fetchall()
         return render_template('admin_detailed_find_your_pet.j2', pets=results, base64=base64)
 
+# @crud_api.route('/admin_add_new_pet_result', methods=['GET', 'POST'])
+# def admin_add_new_pet_result():
+#     return render_template('admin_add_new_pet_result.j2')
 
-      
