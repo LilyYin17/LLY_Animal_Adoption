@@ -180,9 +180,9 @@ def admin_other_pets():
 def customer_other_pets():
     return render_template('customer_other_pets.j2')
 
-@app.route('/admin_add_new_pet_result', methods=['GET', 'POST'])
-def admin_add_new_pet_result():
-    return render_template('admin_add_new_pet_result.j2')
+# @app.route('/admin_add_new_pet_result', methods=['GET', 'POST'])
+# def admin_add_new_pet_result():
+#     return render_template('admin_add_new_pet_result.j2')
 
 
 #Listener

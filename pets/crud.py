@@ -5,6 +5,8 @@ from flask import Blueprint
 import database.db_connector as db
 import base64
 
+import os  #debug
+
 crud_api = Blueprint('crud_api', __name__)
 
 #Routes
@@ -38,13 +40,46 @@ def admin_new_pets():
 def admin_find_your_pet():
     if request.method == 'GET':
         return render_template('admin_find_your_pet.j2')
+
     elif request.method == 'POST':
         db_connection = db.db_connection
 
-        # query = 'SELECT * FROM Pets WHERE type = "%s" and breed = "%s" and name = "%s";' % (221)
-        # query = 'SELECT * FROM Pets WHERE type = "%s";'
-        query = 'SELECT * FROM Pets WHERE type = "dog";'
-        cursor = db.execute_query(db_connection, query)
+        base_query = 'SELECT * FROM Pets WHERE type = "%s"' % (request.form['type'])
+
+        if request.form['name'].strip():  #check the name, todo
+           base_query = base_query + ' AND name =  "%s" ' % (request.form['name'].strip())
+
+        if request.form['breed'].strip(): #check the breed
+           base_query = base_query + ' AND breed =  "%s" ' % request.form['breed'].strip()
+
+        if request.form['age'].strip(): #check the age
+           base_query = base_query + ' AND age =  %s ' % ((request.form['age']))
+        
+        if request.form['size'].strip(): #check the size
+           base_query = base_query + ' AND size =  "%s" ' % (request.form['size'].strip())
+        
+        if request.form['gender'].strip(): #check the gender
+           base_query = base_query + ' AND gender =  "%s" ' % (request.form['gender'].strip())
+        
+        if request.form['goodWithKids'].strip(): #check if good with kids
+           base_query = base_query + ' AND goodWithKids =  %s ' % (request.form['goodWithKids'].strip())
+        
+        if request.form['goodWithDogs'].strip(): #check the good with dogs
+           base_query = base_query + ' AND goodWithDogs =  %s ' % (request.form['goodWithDogs'].strip())
+        
+        if request.form['goodWithCats'].strip(): #check if good with cats
+           base_query = base_query + ' AND goodWithCats =  %s ' % (request.form['goodWithCats'].strip())
+
+        if request.form['mustBeLeashed'].strip(): #check if must be leashed
+           base_query = base_query + ' AND mustBeLeashed =  %s ' % (request.form['mustBeLeashed'].strip())
+          
+        if request.form['availability'].strip(): #check if availability
+           base_query = base_query + ' AND availability =  "%s" ' % (request.form['availability'].strip())
+
+        base_query + ";"
+        cursor = db.execute_query(db_connection, base_query)
         results = cursor.fetchall()
         return render_template('admin_detailed_find_your_pet.j2', pets=results, base64=base64)
 
+
+      
