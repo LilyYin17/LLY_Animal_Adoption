@@ -1,21 +1,42 @@
-{% extends 'layouts/main.j2' %}
+{#{% extends 'layouts/main.j2' %}
 {% block content %} 
     <h2>detailed pet</h2>
     <script type=text/javascript src="{{ url_for('static', filename='/admin_detailed_find_your_pet_form.js') }}"></script>
     <form id="admin_detailed_find_your_pet_form" action="/admin_detailed_find_your_pet" onsubmit="return validateForm()" method="post" required>
 
-        <div class="container">
-            <img id="detailedImage" src="https://trupanion.com/blog/wp-content/uploads/2017/02/cat-1646566_640.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=64">
-            
-            <h3>Name</h3>
-            <p>Domestic Shorthair</p>
-    
-            <h3>About</h3>
-            <p>The Domestic shorthair comes in a wide array of colors, sizes, and statures, 
-            though they tend to be medium-sized and muscular. They have short, 
-            sleek coats and round heads and paws. Because of their mixed parentage,
-            Domestic Shorthairs don't tend to be at-risk for any unusual health complications.</p>
-
-        </div>
+       
     <form>
+{% endblock %}
+#}
+
+
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2> Detailed pet </h2>
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Gender</th>
+            <th>Availability</th>
+            <th colspan="3">Actions</th>
+        </tr>
+
+        <tbody>
+        {% for pet in pets %}
+            <tr>
+                <td>{{ pet['petsID'] }}</td>
+                <td>{{ pet['name'] }}</td>
+                <td><img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" width="200" height="120" alt="img"></td>
+                <td>{{ pet['gender'] }}</td>
+                <td>{{ pet['availability'] }}</td>
+                <td><input type='button' name='View' value='View' onclick="window.location ='#'"> </td>
+                <td><input type='button' name='Edit' value='Edit' onclick="window.location ='#'"> </td>
+                <td><input type='button' name='Delete' value='Delete' onclick="window.location ='#'"> </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br><p><button onclick="location.href='/admin_new_pets'">Add new pet</button></p>
 {% endblock %}

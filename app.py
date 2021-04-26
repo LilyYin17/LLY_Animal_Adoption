@@ -153,10 +153,10 @@ def profile(id):
         db.execute_query(db_connection, query)
         return redirect(url_for('adpoter_home', variable=user_id))
 
-#Find your pet page
-@app.route('/admin_find_your_pet', methods=['GET', 'POST'])
-def admin_find_your_pet():
-    return render_template('admin_find_your_pet.j2')
+#Find your pet page, move to crud.py
+# @app.route('/admin_find_your_pet', methods=['GET', 'POST'])
+# def admin_find_your_pet():
+#     return render_template('admin_find_your_pet.j2')
 
 @app.route('/customer_find_your_pet', methods=['GET', 'POST'])
 def customer_find_your_pet():
