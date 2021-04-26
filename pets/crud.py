@@ -46,8 +46,12 @@ def admin_find_your_pet():
 
         base_query = 'SELECT * FROM Pets WHERE type = "%s"' % (request.form['type'])
 
-        if request.form['name'].strip():  #check the name, todo
-           base_query = base_query + ' AND name =  "%s" ' % (request.form['name'].strip())
+      #   if request.form['name'].strip():  #check the name, todo
+      #      base_query = base_query + ' AND name LIKE "% + request.form['name'].strip() + %" '
+
+
+        if request.form['name'].strip():  #check the name
+           base_query = base_query + ' AND name =  "%s" ' % request.form['name'].strip()
 
         if request.form['breed'].strip(): #check the breed
            base_query = base_query + ' AND breed =  "%s" ' % request.form['breed'].strip()
