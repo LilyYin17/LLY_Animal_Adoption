@@ -275,6 +275,7 @@ tr:nth-of-type(2n + 3) {
   font-size: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
+  margin-bottom: 100px;
 }
 
 .container button {
@@ -289,6 +290,22 @@ tr:nth-of-type(2n + 3) {
 }
 
 .container button:hover {
+  background-color: #262626;
+}
+
+/* Style button on the admin add new pets page */
+.input-btn {
+  background-color: #404040;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.input-btn:hover {
   background-color: #262626;
 }
 
