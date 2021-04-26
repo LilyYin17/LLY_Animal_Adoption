@@ -257,12 +257,14 @@ tr:nth-of-type(2n + 3) {
   background-color: #DDDDDD;
 }
 
+/* Style all pages' name */
 .page-name{
   color: #404040;
   position: relative;
   top: 10px;
 }
 
+/* Style all login and sign in pages */
 .container {
   width: 25%;
   border: 1px solid #808080;
@@ -290,6 +292,7 @@ tr:nth-of-type(2n + 3) {
   background-color: #262626;
 }
 
+/* Style shelter home page */
 .shelter-home-link {
   height: 55px;
   width: 500px;
