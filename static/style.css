@@ -233,6 +233,19 @@ body {
   top: -535px;
 }
 
+.favImg {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.topnav-right:hover .favImg {
+  opacity: 0.5;
+}
+
 /* table citation: https://www.kirupa.com/html5/style_beautiful_tables_using_only_css.htm */
 table {
   margin-left: auto;
