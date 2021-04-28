@@ -22,7 +22,7 @@
                 <td>{{ dog['availability'] }}</td>
                 <td><input type='button' name='View' value='View' onclick="window.location ='/admin_view_details/{{ dog['petsID'] }}'"> </td>
                 <td><input type='button' name='Edit' value='Edit' onclick="window.location ='/admin_update_details/{{ dog['petsID'] }}'"> </td>
-                <td><input type='button' name='Delete' value='Delete' onclick="window.location ='#'"> </td>
+                <td><input type='button' name='Delete' value='Delete' onclick="window.location ='/admin_delete_dog/{{ dog['petsID'] }}'">
             </tr>
         {% endfor %}
     </table>

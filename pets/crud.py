@@ -92,7 +92,7 @@ def admin_find_your_pet():
 
 # View pets details, give id is petsID in Pets table
 @crud_api.route('/admin_view_details/<int:id>')
-def view_dog_details(id):
+def view_details(id):
    db_connection = db.db_connection
    query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
    cursor = db.execute_query(db_connection, query)
@@ -101,7 +101,7 @@ def view_dog_details(id):
 
 # Update pets details, give id is petsID in Pets table
 @crud_api.route('/admin_update_details/<int:id>', methods=['POST', 'GET'])
-def update_dog_details(id):
+def update_details(id):
    petsID = id
    db_connection = db.db_connection
    query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
