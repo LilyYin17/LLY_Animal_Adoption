@@ -233,6 +233,7 @@ body {
   top: -535px;
 }
 
+/* Style the top bar menu favorites icon */
 .favImg {
   opacity: 1;
   display: block;
@@ -244,6 +245,11 @@ body {
 
 .topnav-right:hover .favImg {
   opacity: 0.5;
+}
+
+/* Style the view dog details img */
+.petsDetails {
+  object-fit: contain
 }
 
 /* table citation: https://www.kirupa.com/html5/style_beautiful_tables_using_only_css.htm */
@@ -342,4 +348,10 @@ tr:nth-of-type(2n + 3) {
 
 .shelter-home-link a:hover {
   color: #ffffff;
+}
+
+/* Style view list on the admin view details page */
+ul.shelter_view_detail {
+  list-style-position: inside;
+  text-align:center;
 }

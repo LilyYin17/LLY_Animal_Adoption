@@ -91,10 +91,10 @@ def admin_find_your_pet():
 #     return render_template('admin_add_new_pet_result.j2')
 
 # View dog details, give id is petsID in Pets table
-@crud_api.route('/shelter_view_dog/<int:id>')
+@crud_api.route('/shelter_view_details/<int:id>')
 def view_dog_details(id):
    db_connection = db.db_connection
    query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
    cursor = db.execute_query(db_connection, query)
    results = cursor.fetchall()
-   return render_template('shelter_view_dog_details.j2', dogs=results, base64=base64)
+   return render_template('shelter_view_details.j2', dogs=results, base64=base64)

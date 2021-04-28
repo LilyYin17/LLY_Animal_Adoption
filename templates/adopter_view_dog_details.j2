@@ -1,0 +1,11 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    {% for dog in dogs %}
+        <div class="petsDetail_img">
+            <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" class="petsDetails" width="600" height="500" alt="img">
+        </div>
+        <div class="petsDetail_info">
+        <h2>{{ dog.name }}</h2>
+        </div>
+    {% endfor %}
+{% endblock %}
