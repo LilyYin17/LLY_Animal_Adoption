@@ -5,6 +5,7 @@
     <div class="container" style="text-align:left; text-indent:50px;">
         <form id="admin_new_pets_form" action="/admin_new_pets" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required>
             <p>Type: <select name="type">
+                <option value="">--Please choose an option--</option>
                 <option value="dog">dog</option>
                 <option value="cat">cat</option>
                 <option value="others">others</option>

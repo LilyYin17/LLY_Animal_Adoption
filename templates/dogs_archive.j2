@@ -20,8 +20,8 @@
                 <td><img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" width="200" height="120" alt="img"></td>
                 <td>{{ dog['gender'] }}</td>
                 <td>{{ dog['availability'] }}</td>
-                <td><input type='button' name='View' value='View' onclick="window.location ='/shelter_view_details/{{ dog['petsID'] }}'"> </td>
-                <td><input type='button' name='Edit' value='Edit' onclick="window.location ='#'"> </td>
+                <td><input type='button' name='View' value='View' onclick="window.location ='/admin_view_details/{{ dog['petsID'] }}'"> </td>
+                <td><input type='button' name='Edit' value='Edit' onclick="window.location ='/admin_update_details/{{ dog['petsID'] }}'"> </td>
                 <td><input type='button' name='Delete' value='Delete' onclick="window.location ='#'"> </td>
             </tr>
         {% endfor %}
