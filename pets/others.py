@@ -21,3 +21,19 @@ def others_archive():
     cursor = db.execute_query(db_connection, query)
     results = cursor.fetchall()
     return render_template('others_archive.j2', others=results, base64=base64)
+
+
+# Delete selected pet, given id is petsID in Pets table
+@others_api.route('/admin_delete_other/<int:id>')
+def delete_other(id):
+   db_connection = db.db_connection
+
+   # Delete selected pet
+   query = "DELETE FROM Pets WHERE petsID=%d;" % (id)
+   db.execute_query(db_connection, query)
+
+   # Show updated other pets information
+   query = 'SELECT * FROM Pets WHERE type = "%s";' % ("others")
+   cursor = db.execute_query(db_connection, query)
+   results = cursor.fetchall()
+   return redirect(url_for('others_api.others_archive'))
