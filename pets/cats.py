@@ -16,3 +16,18 @@ def cats_archive():
     cursor = db.execute_query(db_connection, query)
     results = cursor.fetchall()
     return render_template('cats_archive.j2', cats=results, base64=base64)
+
+# Delete cat, give id is petsID in Pets table
+@cats_api.route('/admin_delete_cat/<int:id>')
+def delete_cat(id):
+   db_connection = db.db_connection
+
+   # Delete selected dog
+   query = "DELETE FROM Pets WHERE petsID=%d;" % (id)
+   db.execute_query(db_connection, query)
+
+   # Show updated all dogs information
+   query = 'SELECT * FROM Pets WHERE type = "%s";' % ("cat")
+   cursor = db.execute_query(db_connection, query)
+   results = cursor.fetchall()
+   return redirect(url_for('cats_api.cats_archive'))

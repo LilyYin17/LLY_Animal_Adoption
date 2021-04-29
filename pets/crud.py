@@ -90,3 +90,40 @@ def admin_find_your_pet():
 # def admin_add_new_pet_result():
 #     return render_template('admin_add_new_pet_result.j2')
 
+# View pets details, give id is petsID in Pets table
+@crud_api.route('/admin_view_details/<int:id>')
+def view_details(id):
+   db_connection = db.db_connection
+   query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
+   cursor = db.execute_query(db_connection, query)
+   results = cursor.fetchall()
+   return render_template('admin_view_details.j2', dogs=results, base64=base64)
+
+# Update pets details, give id is petsID in Pets table
+@crud_api.route('/admin_update_details/<int:id>', methods=['POST', 'GET'])
+def update_details(id):
+   petsID = id
+   db_connection = db.db_connection
+   query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
+   cursor = db.execute_query(db_connection, query)
+   results = cursor.fetchall()
+   if request.method == 'GET':
+      return render_template('admin_update_pets.j2', dogs=results, value=petsID)
+   elif request.method == 'POST':
+      type = request.form['type']
+      name = request.form['name']
+      breed = request.form['breed']
+      age = request.form['age']
+      size = request.form['size']
+      gender = request.form['gender']
+      goodWithKids = request.form['goodWithKids']
+      goodWithDogs = request.form['goodWithDogs']
+      goodWithCats = request.form['goodWithCats']
+      mustBeLeashed = request.form['mustBeLeashed']
+      availability = request.form['availability']
+      query = "UPDATE Pets SET type='%s', name='%s', breed='%s', age='%s', size='%s', gender='%s', goodWithKids='%s', goodWithDogs='%s', goodWithCats='%s', mustBeLeashed='%s', availability='%s' WHERE petsID=%d;" % (type, name, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability, petsID)
+      db.execute_query(db.db_connection, query)
+      query = 'SELECT * FROM Pets WHERE petsID = %d;' % (petsID)
+      cursor = db.execute_query(db_connection, query)
+      results = cursor.fetchall()
+      return render_template('admin_view_details.j2', dogs=results, base64=base64)

@@ -1,0 +1,43 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    {% for dog in dogs %}
+        <h2>Name: {{ dog.name }}</h2>
+        <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" class="petsDetails" width="500" height="400" alt="img">
+        <div class="petsDetail_info">
+        <h2>Details</h2>
+        <ul class="shelter_view_detail">
+            <li>pet ID: {{ dog.petsID }}</li>
+            <li>type: {{ dog.type }}</li>
+            <li>breed: {{ dog.breed }}</li>
+            <li>age: {{ dog.age }}</li>
+            <li>size: {{ dog.size }}</li>
+            <li>gender: {{ dog.gender }}</li>
+            <li>availability: {{ dog.availability }}</li>
+            {% if dog.goodWithKids %}
+                <li>good with kids: yes </li>
+            {% else %}
+                <li>good with kids: no </li>
+            {% endif %}
+
+            {% if dog.goodWithDogs %}
+                <li>good with dogs: yes </li>
+            {% else %}
+                <li>good with dogs: no </li>
+            {% endif %}
+
+            {% if dog.goodWithCats %}
+                <li>good with cats: yes </li>
+            {% else %}
+                <li>good with cats: no </li>
+            {% endif %}
+
+            {% if dog.mustBeLeashed %}
+                <li>must be leashed: yes</li>
+            {% else %}
+                <li>must be leashed: no</li>
+            {% endif %}
+        </ul>
+        </div>
+        <p><button onclick="location.href='/admin_update_details/{{ dog.petsID }}'">Edit</button></p>
+    {% endfor %}
+{% endblock %}

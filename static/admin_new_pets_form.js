@@ -1,4 +1,10 @@
 function validateForm() {
+    var type = document.forms["admin_new_pets_form"]["type"].value;
+    if (type == "" || type == null) {
+        alert("must choose one type");
+        return false;
+    }
+
     var breed = document.forms["admin_new_pets_form"]["breed"].value;
     if (breed == "" || breed == null) {
         alert("breed must be filled out");
