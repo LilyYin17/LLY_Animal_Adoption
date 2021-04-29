@@ -5,6 +5,7 @@ import os
 import database.db_connector as db
 from pets.dogs import dogs_api
 from pets.cats import cats_api
+from pets.others import others_api
 from pets.crud import crud_api
 
 #Configuration
@@ -16,6 +17,10 @@ app.register_blueprint(dogs_api)
 
 #Improt cats.py
 app.register_blueprint(cats_api)
+
+
+#Improt others.py
+app.register_blueprint(others_api)
 
 #Improt crud.py
 app.register_blueprint(crud_api)
@@ -172,13 +177,13 @@ def customer_detailed_find_your_pet():
     return render_template('customer_detailed_find_your_pet.j2')
 
 #Other pet page
-@app.route('/admin_other_pets', methods=['GET', 'POST'])
-def admin_other_pets():
-    return render_template('admin_other_pets.j2')
+@app.route('/admin_others', methods=['GET', 'POST'])
+def admin_others():
+    return render_template('admin_others.j2')
 
-@app.route('/customer_other_pets', methods=['GET', 'POST'])
-def customer_other_pets():
-    return render_template('customer_other_pets.j2')
+@app.route('/customer_others', methods=['GET', 'POST'])
+def customer_others():
+    return render_template('customer_others.j2')
 
 @app.route('/admin_add_new_pet_result', methods=['GET', 'POST'])
 def admin_add_new_pet_result():
