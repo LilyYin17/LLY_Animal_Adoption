@@ -1,6 +1,6 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
-    <h2 class="page-name"> Update pets({{ dogs[0]['petsID'] }}) information </h2>
+    <h2 class="page-name"> Update Pets ({{ dogs[0]['petsID'] }}) Information </h2>
     <script type=text/javascript src="{{ url_for('static', filename='/admin_update_pets_form.js') }}"></script>
     <div class="container" style="text-align:left; text-indent:50px;">
         <form id="admin_update_pets_form" action="/admin_update_details/{{ value }}" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required>
@@ -75,6 +75,7 @@
                 <option value="adopted">adopted</option>
                 <br></select>
             </p>
+            <br>
             <p><input type="submit" value="Save changes" class="input-btn" style="position:relative; left:80px;"></p>
         </form>
     <div>

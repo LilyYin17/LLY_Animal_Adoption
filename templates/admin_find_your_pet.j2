@@ -2,64 +2,68 @@
 {% block content %} 
     <h2 class="page-name">Find Your Pet</h2>
     <script type=text/javascript src="{{ url_for('static', filename='admin_find_your_pet_form.js') }}"></script>
-    <form id="admin_find_your_pet_form" action="/admin_find_your_pet" onsubmit="return validateForm()" method="post" required>
-            
-         <p>type: <select name="type">
-            <option value="dog">dog</option>
-            <option value="cat">cat</option>
-            <option value="others">others</option>
-            <br></select>
-        </p>
-        <p>breed: <input type="text" name="breed"><br></p>
-        <p>name: <input type="text" name="name"><br></p>
-        <p>age (months): <input type="number" name="age" min="0"><br></p>
-        <p>size: <select name="size">
-            <option value=""></option>
-            <option value="small">small (0-25 lbs)</option>
-            <option value="medium">medium (26-60 lbs)</option>
-            <option value="large">large (61-100 lbs)</option>
-            <option value="extra large">extra large (101 lbs or more)</option>
-            <br></select>
-        </p>
-        <p>gender: <select name="gender">
-            <option value=""></option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-            <br></select>
-        </p>
-        <p>good with kids: <select name="goodWithKids">
-            <option value=></option>
-            <option value=0>yes</option>
-            <option value=1>no</option>
-            <br></select>
-        </p>
-        <p>good with other dogs: <select name="goodWithDogs">
-            <option value=></option>
-            <option value=0>yes</option>
-            <option value=1>no</option>
-            <br></select>
-        </p>
-        <p>good with other cats: <select name="goodWithCats">
-            <option value=></option>
-            <option value=0>yes</option>
-            <option value=1>no</option>
-            <br></select>
-        </p>
-        <p>must be leashed: <select name="mustBeLeashed">
-            <option value=></option>
-            <option value=0>yes</option>
-            <option value=1>no</option>
-            <br></select>
-        </p>
-                <p>availability: <select name="availability">
-            <option value=""></option>
-            <option value="available">available</option>
-            <option value="pending">pending</option>
-            <option value="adopted">adopted</option>
-            <br></select>
-        </p>
 
-        <button type="submit">Search</button>
+    <div class="container" style="text-align:left; text-indent:50px;">
+        <form id="admin_find_your_pet_form" action="/admin_find_your_pet" onsubmit="return validateForm()" method="post" required>
 
-    <form>
+             <p>Type: <select name="type">
+                <option value="dog">dog</option>
+                <option value="cat">cat</option>
+                <option value="others">others</option>
+                <br></select>
+            </p>
+            <p>Breed: <input type="text" name="breed"><br></p>
+            <p>Name: <input type="text" name="name"><br></p>
+            <p>Age (months): <input type="number" name="age" min="0"><br></p>
+            <p>Size: <select name="size">
+                <option value=""></option>
+                <option value="small">small (0-25 lbs)</option>
+                <option value="medium">medium (26-60 lbs)</option>
+                <option value="large">large (61-100 lbs)</option>
+                <option value="extra large">extra large (101 lbs or more)</option>
+                <br></select>
+            </p>
+            <p>Gender: <select name="gender">
+                <option value=""></option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <br></select>
+            </p>
+            <p>Good with kids: <select name="goodWithKids">
+                <option value=></option>
+                <option value=0>yes</option>
+                <option value=1>no</option>
+                <br></select>
+            </p>
+            <p>Good with other dogs: <select name="goodWithDogs">
+                <option value=></option>
+                <option value=0>yes</option>
+                <option value=1>no</option>
+                <br></select>
+            </p>
+            <p>Good with other cats: <select name="goodWithCats">
+                <option value=></option>
+                <option value=0>yes</option>
+                <option value=1>no</option>
+                <br></select>
+            </p>
+            <p>Must be leashed: <select name="mustBeLeashed">
+                <option value=></option>
+                <option value=0>yes</option>
+                <option value=1>no</option>
+                <br></select>
+            </p>
+                    <p>Availability: <select name="availability">
+                <option value=""></option>
+                <option value="available">available</option>
+                <option value="pending">pending</option>
+                <option value="adopted">adopted</option>
+                <br></select>
+            </p>
+            <br>
+
+            <button type="submit" class="input-btn" style="position:relative; left:150px;">Search</button>
+            <br><br>
+        <form>
+    <div>
 {% endblock %}
