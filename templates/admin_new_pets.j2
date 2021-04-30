@@ -1,6 +1,6 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
-    <h2 class="page-name"> Add new pets </h2>
+    <h2 class="page-name"> Add New Pets </h2>
     <script type=text/javascript src="{{ url_for('static', filename='/admin_new_pets_form.js') }}"></script>
     <div class="container" style="text-align:left; text-indent:50px;">
         <form id="admin_new_pets_form" action="/admin_new_pets" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required>
