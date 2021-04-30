@@ -110,4 +110,4 @@ Hop on over to the terminal:
 python3 app.py
 ```
 
-Then enter the web address, you should be able to see the landing page.
+Then enter the web address, you should be able to see the landing page at: http://localhost:1234/
