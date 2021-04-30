@@ -253,7 +253,7 @@ body {
 }
 
 /* table citation: https://www.kirupa.com/html5/style_beautiful_tables_using_only_css.htm */
-table {
+/* table {
   margin-left: auto;
   margin-right: auto;
   border: 2px solid gray;
@@ -274,7 +274,7 @@ tr:nth-of-type(2n + 2) {
 
 tr:nth-of-type(2n + 3) {
   background-color: #DDDDDD;
-}
+} */
 
 /* Style all pages' name */
 .page-name{
@@ -354,4 +354,38 @@ tr:nth-of-type(2n + 3) {
 ul.shelter_view_detail {
   list-style-position: inside;
   text-align:center;
+}
+
+/* Style cats, dogs and other pets pages */
+table {
+  border-collapse: collapse;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1), 0 5px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+th {
+  padding: 15px;
+  background-color: #cccccc;
+  color: #333333;
+}
+
+td {
+  padding: 15px;
+  background-color: #e6e6e6;
+  color: #333333;
+}
+
+.archive-btn {
+  border: 1px solid #bfbfbf;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #333333;
+}
+
+.archive-btn:hover {
+  background-color: #bfbfbf;
 }
