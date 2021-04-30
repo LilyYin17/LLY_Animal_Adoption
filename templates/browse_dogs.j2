@@ -1,4 +1,12 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
     <h3>ALL DOGS</h3>
+    <div class="adopter-browse-panel">
+        {% for dog in dogs %}
+            <li class="adopter-browse-pets">
+                <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" class="browse-pets-img" width="200" height="150" alt="img">
+                <div class="adopter-browse-detail"><a href="#">{{ dog['name'] }}</a></div>
+            </li>
+        {% endfor %}
+    </div>
 {% endblock %}

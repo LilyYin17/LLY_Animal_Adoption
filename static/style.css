@@ -366,3 +366,8 @@ td {
 .archive-btn:hover {
   background-color: #bfbfbf;
 }
+
+/* Style the adopter browse all pets img */
+.browse-pets-img {
+  object-fit: contain
+}
