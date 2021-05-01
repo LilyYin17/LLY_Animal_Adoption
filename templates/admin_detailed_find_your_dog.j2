@@ -1,0 +1,41 @@
+{#{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2>detailed Dog</h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/admin_detailed_find_your_dog_form.js') }}"></script>
+    <form id="admin_detailed_find_your_dog_form" action="/admin_detailed_find_your_dog" onsubmit="return validateForm()" method="post" required>
+
+       
+    <form>
+{% endblock %}
+#}
+
+
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2> Detailed Dog </h2>
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Gender</th>
+            <th>Availability</th>
+            <th colspan="3">Actions</th>
+        </tr>
+
+        <tbody>
+        {% for dog in dogs %}
+            <tr>
+                <td>{{ dog['petsID'] }}</td>
+                <td>{{ dog['name'] }}</td>
+                <td><img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" width="200" height="120" alt="img"></td>
+                <td>{{ dog['gender'] }}</td>
+                <td>{{ dog['availability'] }}</td>
+                <td><input type='button' name='View' value='View' onclick="window.location ='/admin_view_details/{{ dog['petsID'] }}'"> </td>
+                <td><input type='button' name='Edit' value='Edit' onclick="window.location ='/admin_update_details/{{ dog['petsID'] }}'"> </td>
+                <td><input type='button' name='Delete' value='Delete' onclick="window.location ='/admin_delete_dog/{{ dog['petsID'] }}'">
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

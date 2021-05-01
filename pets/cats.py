@@ -22,11 +22,11 @@ def cats_archive():
 def delete_cat(id):
    db_connection = db.db_connection
 
-   # Delete selected dog
+   # Delete selected cat
    query = "DELETE FROM Pets WHERE petsID=%d;" % (id)
    db.execute_query(db_connection, query)
 
-   # Show updated all dogs information
+   # Show updated all cats information
    query = 'SELECT * FROM Pets WHERE type = "%s";' % ("cat")
    cursor = db.execute_query(db_connection, query)
    results = cursor.fetchall()
