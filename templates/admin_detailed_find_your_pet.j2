@@ -1,15 +1,3 @@
-{#{% extends 'layouts/main.j2' %}
-{% block content %} 
-    <h2>detailed pet</h2>
-    <script type=text/javascript src="{{ url_for('static', filename='/admin_detailed_find_your_pet_form.js') }}"></script>
-    <form id="admin_detailed_find_your_pet_form" action="/admin_detailed_find_your_pet" onsubmit="return validateForm()" method="post" required>
-
-       
-    <form>
-{% endblock %}
-#}
-
-
 {% extends 'layouts/main.j2' %}
 {% block content %} 
     <h2 class="page-name"> Find A Pet Result </h2>
