@@ -247,11 +247,6 @@ body {
   opacity: 0.5;
 }
 
-/* Style the view dog details img */
-.petsDetails {
-  object-fit: contain
-}
-
 /* Style all pages' name */
 .page-name{
   color: #404040;
@@ -266,7 +261,8 @@ body {
   border-radius: 5px;
   position: relative;
   top: 25px;
-  left: 565px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -311,8 +307,9 @@ body {
   border-radius: 5px;
   background-color: #bfbfbf;
   position: relative;
-  left: 500px;
   top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .shelter-home-link a {
@@ -370,4 +367,28 @@ td {
 /* Style the adopter browse all pets img */
 .browse-pets-img {
   object-fit: contain
+}
+
+/* Style the list on admin find a pet result page */
+.pet-details {
+  background: #e6e6e6;
+  width: 600px;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: left;
+  text-indent: 170px;
+  color: #333333;
+  margin-left: auto;
+  margin-right: auto;
+  list-style-position: inside;
+  line-height: 150%;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1), 0 5px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Style the img on admin find a pet result page */
+.pet-details img {
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
