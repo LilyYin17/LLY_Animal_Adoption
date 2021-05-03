@@ -5,6 +5,7 @@
     <form id="admin_find_other_pet_form" action="/admin_find_other_pet" onsubmit="return validateForm()" method="post" required>
             
         <p>breed: <select name="breed">
+           <option value=""></option>
         {% for breed in breeds %}
             <option value="{{breed}}">{{breed}}</option>
         {% endfor %}
