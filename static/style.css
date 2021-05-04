@@ -385,10 +385,13 @@ td {
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1), 0 5px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Style the img on admin find a pet result page */
-.pet-details img {
-  object-fit: contain;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* Style adopter browse dogs/cats/others page */
+.browse-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.browse-content {
+  flex: 22%;
+  padding: 7px;
 }
