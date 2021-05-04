@@ -1,0 +1,12 @@
+{% extends 'layouts/main.j2' %}
+{% block content %}
+    <h3>All Cats</h3>
+    <div class="browse-container">
+        {% for cat in cats %}
+            <div class="browse-content">
+                <img src="data:;base64,{{ base64.b64encode(cat.img).decode() }}" class="browse-img" width="200" height="150" alt="img">
+                <div class="browse-name"><a href="#">{{ cat['name'] }}</a></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
