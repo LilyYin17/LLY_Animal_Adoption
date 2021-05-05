@@ -1,0 +1,66 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2 class="page-name">Find Other Pet</h2>
+    <script type=text/javascript src="{{ url_for('static', filename='adopter_find_other_pet_form.js') }}"></script>
+    <form id="adopter_find_other_pet_form" action="/adopter_find_other_pet" onsubmit="return validateForm()" method="post" required>
+            
+        <p>breed: <select name="breed">
+            <option value=""></option>
+        {% for breed in breeds %}
+            <option value="{{breed}}">{{breed}}</option>
+        {% endfor %}
+        </select>
+        </p>
+
+        <p>name: <input type="text" name="name"><br></p>
+        <p>age (months): <input type="number" name="age" min="0"><br></p>
+        <p>size: <select name="size">
+            <option value=""></option>
+            <option value="small">small (0-25 lbs)</option>
+            <option value="medium">medium (26-60 lbs)</option>
+            <option value="large">large (61-100 lbs)</option>
+            <option value="extra large">extra large (101 lbs or more)</option>
+            <br></select>
+        </p>
+        <p>gender: <select name="gender">
+            <option value=""></option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <br></select>
+        </p>
+        <p>good with kids: <select name="goodWithKids">
+            <option value=></option>
+            <option value=0>yes</option>
+            <option value=1>no</option>
+            <br></select>
+        </p>
+        <p>good with other dogs: <select name="goodWithDogs">
+            <option value=></option>
+            <option value=0>yes</option>
+            <option value=1>no</option>
+            <br></select>
+        </p>
+        <p>good with other cats: <select name="goodWithCats">
+            <option value=></option>
+            <option value=0>yes</option>
+            <option value=1>no</option>
+            <br></select>
+        </p>
+        <p>must be leashed: <select name="mustBeLeashed">
+            <option value=></option>
+            <option value=0>yes</option>
+            <option value=1>no</option>
+            <br></select>
+        </p>
+                <p>availability: <select name="availability">
+            <option value=""></option>
+            <option value="available">available</option>
+            <option value="pending">pending</option>
+            <option value="adopted">adopted</option>
+            <br></select>
+        </p>
+
+        <button type="submit">Search</button>
+
+    <form>
+{% endblock %}

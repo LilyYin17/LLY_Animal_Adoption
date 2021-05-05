@@ -1,0 +1,41 @@
+{#{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2>detailed Cat</h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/adopter_detailed_find_your_cat_form.js') }}"></script>
+    <form id="adopter_detailed_find_your_cat_form" action="/adopter_detailed_find_your_cat" onsubmit="return validateForm()" method="post" required>
+
+       
+    <form>
+{% endblock %}
+#}
+
+
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2> Detailed Cat </h2>
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Gender</th>
+            <th>Availability</th>
+            <th colspan="3">Actions</th>
+        </tr>
+
+        <tbody>
+        {% for cat in cats %}
+            <tr>
+                <td>{{ cat['petsID'] }}</td>
+                <td>{{ cat['name'] }}</td>
+                <td><img src="data:;base64,{{ base64.b64encode(cat.img).decode() }}" width="200" height="120" alt="img"></td>
+                <td>{{ cat['gender'] }}</td>
+                <td>{{ cat['availability'] }}</td>
+                <td><input type='button' name='View' value='View' onclick="window.location ='/adopter_view_details/{{ cat['petsID'] }}'"> </td>
+               {# <td><input type='button' name='Edit' value='Edit' onclick="window.location ='/adopter_update_details/{{ cat['petsID'] }}'"> </td>
+                <td><input type='button' name='Delete' value='Delete' onclick="window.location ='/cat/{{ cat['petsID'] }}'">#}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
