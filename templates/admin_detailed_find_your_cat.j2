@@ -1,41 +1,35 @@
-{#{% extends 'layouts/main.j2' %}
-{% block content %} 
-    <h2>detailed Cat</h2>
-    <script type=text/javascript src="{{ url_for('static', filename='/admin_detailed_find_your_cat_form.js') }}"></script>
-    <form id="admin_detailed_find_your_cat_form" action="/admin_detailed_find_your_cat" onsubmit="return validateForm()" method="post" required>
-
-       
-    <form>
-{% endblock %}
-#}
-
-
 {% extends 'layouts/main.j2' %}
 {% block content %} 
-    <h2> Detailed Cat </h2>
+    <h2 class="page-name"> Find A Cat Result </h2>
+    <br>
     <table>
-    <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Gender</th>
-            <th>Availability</th>
-            <th colspan="3">Actions</th>
+            <th style="width:10%">ID</th>
+            <th style="width:10%">Name</th>
+            <th style="width:30%">Image</th>
+            <th style="width:10%">Gender</th>
+            <th style="width:10%">Availability</th>
+            <th style="width:30%">Actions</th>
         </tr>
-
-        <tbody>
-        {% for cat in cats %}
-            <tr>
-                <td>{{ cat['petsID'] }}</td>
-                <td>{{ cat['name'] }}</td>
-                <td><img src="data:;base64,{{ base64.b64encode(cat.img).decode() }}" width="200" height="120" alt="img"></td>
-                <td>{{ cat['gender'] }}</td>
-                <td>{{ cat['availability'] }}</td>
-                <td><input type='button' name='View' value='View' onclick="window.location ='/admin_view_details/{{ cat['petsID'] }}'"> </td>
-                <td><input type='button' name='Edit' value='Edit' onclick="window.location ='/admin_update_details/{{ cat['petsID'] }}'"> </td>
-                <td><input type='button' name='Delete' value='Delete' onclick="window.location ='/admin_delete_cat/{{ cat['petsID'] }}'">
-            </tr>
-        {% endfor %}
     </table>
+    <br>
+
+    {% for cat in cats %}
+        <table>
+            <tr>
+                <td style="width:10%">{{ cat['petsID'] }}</td>
+                <td style="width:10%">{{ cat['name'] }}</td>
+                <td style="width:30%"><img src="data:;base64,{{ base64.b64encode(cat.img).decode() }}" width="200" height="120" alt="img"></td>
+                <td style="width:10%">{{ cat['gender'] }}</td>
+                <td style="width:10%">{{ cat['availability'] }}</td>
+                <td style="width:10%"><input type='button' name='View' value='View' onclick="window.location ='/admin_view_details/{{ cat['petsID'] }}'" class="archive-btn"> </td>
+                <td style="width:10%"><input type='button' name='Edit' value='Edit' onclick="window.location ='/admin_update_details/{{ cat['petsID'] }}'" class="archive-btn"> </td>
+                <td style="width:10%"><input type='button' name='Delete' value='Delete' onclick="window.location ='admin_delete_cat/{{ cat['petsID'] }}'" class="archive-btn"> </td>
+            </tr>
+        <table>
+        <br>
+    {% endfor %}
+
+    <p><button onclick="location.href='/admin_new_pets'" class="input-btn">Add new pet</button></p>
+    <br>
 {% endblock %}
