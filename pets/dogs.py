@@ -9,6 +9,7 @@ import base64
 dogs_api = Blueprint('dogs_api', __name__)
 
 # Routes
+# Adopter protocol
 # Adopter browse all dogs
 @dogs_api.route('/browse_dogs')
 def browse_dogs():
@@ -18,6 +19,7 @@ def browse_dogs():
     results = cursor.fetchall()
     return render_template('browse_dogs.j2', dogs=results, base64=base64)
 
+# Admin protocol
 # Dogs Archive page, show all dogs
 @dogs_api.route('/dogs_archive')
 def dogs_archive():
