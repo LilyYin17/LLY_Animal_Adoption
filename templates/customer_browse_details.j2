@@ -1,0 +1,16 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    {% for dog in dogs %}
+    <h2>Meet {{ dog.name }}</h2>
+        <div class="adopter-detail-container">
+            <div class="pets-details-img">
+                <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" style="width:60%;" alt="img">
+            </div>
+            <div class="adopter-detail-content">
+                <h3>About</h3>
+                <p>{{ dog.age}} months old &middot {{ dog.gender}} &middot {{ dog.size}}</p>
+                <h3>Think about {{ dog.name}} might be a match?</h3>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
