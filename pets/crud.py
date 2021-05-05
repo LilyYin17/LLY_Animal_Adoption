@@ -9,8 +9,9 @@ import os  #debug
 
 crud_api = Blueprint('crud_api', __name__)
 
-#Routes
-#Admin add new pet page
+# Routes
+# Admin protocol
+# Admin add new pet page
 @crud_api.route('/admin_new_pets', methods=['GET', 'POST'])
 def admin_new_pets():
    if request.method == 'GET':
@@ -36,11 +37,11 @@ def admin_new_pets():
         return redirect(url_for('admin_add_new_pet_result'))
 
 
-#Admin find a dog page
+# Admin find a dog page
 @crud_api.route('/admin_find_a_dog', methods=['GET', 'POST'])
 def admin_find_a_dog():
 
-   #get all existing dog's breeds from database
+   # get all existing dog's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
       query = 'SELECT breed FROM Pets WHERE type = "%s"' % ("dog")
@@ -95,11 +96,11 @@ def admin_find_a_dog():
         results = cursor.fetchall()
         return render_template('admin_detailed_find_your_dog.j2', dogs=results, base64=base64)
 
-#Admin find a cat page
+# Admin find a cat page
 @crud_api.route('/admin_find_a_cat', methods=['GET', 'POST'])
 def admin_find_a_cat():
 
-   #get all existing cat's breeds from database
+   # get all existing cat's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
       query = 'SELECT breed FROM Pets WHERE type = "%s"' % ("cat")
@@ -155,11 +156,11 @@ def admin_find_a_cat():
         return render_template('admin_detailed_find_your_cat.j2', cats=results, base64=base64)
 
 
-#Admin find other pet page
+# Admin find other pet page
 @crud_api.route('/admin_find_other_pet', methods=['GET', 'POST'])
 def admin_find_other_pet():
 
-   #get all existing cat's breeds from database
+   # get all existing cat's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
       query = 'SELECT breed FROM Pets WHERE type = "%s"' % ("others")
@@ -256,3 +257,13 @@ def update_details(id):
       cursor = db.execute_query(db_connection, query)
       results = cursor.fetchall()
       return render_template('admin_view_details.j2', dogs=results, base64=base64)
+
+# Adopter protocol
+# Adopter browsw pet details, give id is petsID
+@crud_api.route('/browse_details/<int:id>')
+def browse_detail(id):
+   db_connection = db.db_connection
+   query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
+   cursor = db.execute_query(db_connection, query)
+   results = cursor.fetchall()
+   return render_template('customer_browse_details.j2', dogs=results, base64=base64)
