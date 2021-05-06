@@ -21,7 +21,7 @@ body {
 
 /* Style the top navigation bar */
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_navbar */
-ul {
+#header-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -406,12 +406,10 @@ td {
   border-radius: 10px;
   padding: 10px;
   text-align: left;
-  text-indent: 170px;
+  text-indent: 200px;
   color: #333333;
   margin-left: auto;
   margin-right: auto;
-  list-style-position: inside;
-  line-height: 150%;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1), 0 5px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
