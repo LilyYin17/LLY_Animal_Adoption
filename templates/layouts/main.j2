@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="header"><h1>LLY Adoption Center</h1></div>
-        <ul>
+        <ul id="header-ul">
             {% if session['shelter_loggedin'] %}
                 <li><a href="/shelter_home">Shelter Home</a></li>
                 <li class="dropdown">
@@ -27,6 +27,7 @@
                         <a href="/admin_find_other_pet">Find Another Pet</a>
                     </div>
                 </li>
+                <li><a href="/admin_new_pets">Add New Pet</a></li>
                 <li style="float:right;"><a href="/logout">Sign Out</a></li>
 
             {% elif session['adopter_loggedin'] %}
