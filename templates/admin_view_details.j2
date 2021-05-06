@@ -7,38 +7,37 @@
         <br>
         <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" class="petsDetails" width="500" height="300" alt="img">
         <br>
-        <ul>
-            <li>Pet ID: {{ dog.petsID }}</li>
-            <li>Type: {{ dog.type }}</li>
-            <li>Breed: {{ dog.breed }}</li>
-            <li>Age: {{ dog.age }}</li>
-            <li>Size: {{ dog.size }}</li>
-            <li>Gender: {{ dog.gender }}</li>
-            <li>Availability: {{ dog.availability }}</li>
+            <p>- Pet ID: {{ dog.petsID }}</p>
+            <p>- Type: {{ dog.type }}</p>
+            <p>- Breed: {{ dog.breed }}</p>
+            <p>- Age: {{ dog.age }}</p>
+            <p>- Size: {{ dog.size }}</p>
+            <p>- Gender: {{ dog.gender }}</p>
+            <p>- Availability: {{ dog.availability }}</p>
             {% if dog.goodWithKids %}
-                <li>Good with kids: yes </li>
+                <p>- Good with kids: yes </p>
             {% else %}
-                <li>Good with kids: no </li>
+                <p>- Good with kids: no </p>
             {% endif %}
 
             {% if dog.goodWithDogs %}
-                <li>Good with dogs: yes </li>
+                <p>- Good with dogs: yes </p>
             {% else %}
-                <li>Good with dogs: no </li>
+                <p>- Good with dogs: no </p>
             {% endif %}
 
             {% if dog.goodWithCats %}
-                <li>Good with cats: yes </li>
+                <p>- Good with cats: yes </p>
             {% else %}
-                <li>Good with cats: no </li>
+                <p>- Good with cats: no </p>
             {% endif %}
 
             {% if dog.mustBeLeashed %}
-                <li>Must be leashed: yes</li>
+                <p>- Must be leashed: yes</p>
             {% else %}
-                <li>Must be leashed: no</li>
+                <p>- Must be leashed: no</p>
             {% endif %}
-        </ul>
+            <br>
         </div>
         <br>
         <p><button onclick="location.href='/admin_update_details/{{ dog.petsID }}'" class="input-btn">Edit</button></p>
