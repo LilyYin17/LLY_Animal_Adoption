@@ -31,9 +31,8 @@
                 <li style="float:right;"><a href="/logout">Sign Out</a></li>
 
             {% elif session['adopter_loggedin'] %}
-                <li><a href="/adopter_home">Adopter Home</a></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Browse Pets</a>
+                    <a href="/adopter_home" class="dropbtn">Adopter Home</a>
                     <div class="dropdown-content">
                         <a href="/browse_cats">Browse Cats</a>
                         <a href="/browse_dogs">Browse Dogs</a>
