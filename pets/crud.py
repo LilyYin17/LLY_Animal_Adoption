@@ -260,10 +260,16 @@ def update_details(id):
 
 # Adopter protocol
 # Adopter browsw pet details, give id is petsID
-@crud_api.route('/browse_details/<int:id>')
+@crud_api.route('/browse_details/<int:id>', methods=['POST', 'GET'])
 def browse_detail(id):
    db_connection = db.db_connection
-   query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
-   cursor = db.execute_query(db_connection, query)
-   results = cursor.fetchall()
-   return render_template('customer_browse_details.j2', dogs=results, base64=base64)
+   if request.method == 'GET':
+      query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
+      cursor = db.execute_query(db_connection, query)
+      results = cursor.fetchall()
+      return render_template('customer_browse_details.j2', dogs=results, base64=base64)
+   elif request.method == 'POST':
+      # Customer click "adopt" button, pet becomes "pending"
+      query = "UPDATE Pets SET availability='pending' WHERE petsID=%d;" % (id)
+      db.execute_query(db.db_connection, query)
+      return render_template('customer_request_ok.j2', userID=session['userID'])
