@@ -1,0 +1,54 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    {% for pet in pets %}
+    <h2>Meet {{ pet.name }}</h2>
+        <div class="adopter-detail-container">
+            <div class="pets-details-img">
+                <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" style="width:60%;" alt="img">
+            </div>
+            <div class="adopter-detail-content">
+                <h3>About</h3>
+                <p>{{ pet.breed}} &middot {{ pet.age}} months &middot {{ pet.gender}}</p>
+                <p>- Size: {{ pet.size}}</p>
+                <p>- Is {{ pet.name }} good with other dogs? 
+                    {% if pet.goodWithDogs %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+                <p>- Is {{ pet.name }} good with cats? 
+                    {% if pet.goodWithCats %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+                <p>- Is {{ pet.name }} good with kids? 
+                    {% if pet.goodWithKids %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+                <p>- {{ pet.name }} must be leashed? 
+                    {% if pet.mustBeLeashed %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+                <h3>Think about {{ pet.name}} might be a match?</h3>
+                {% if pet.availability == "available" %}
+                    <form id="adopter_browse_details_form" action="/browse_details/{{ pet.petsID }}" method="post">
+                        <input type="submit" name="request_to_adopte" value="Send request to adopt {{ pet.name}}"/>
+                    </form>
+                {% elif pet.availability == "pending"%}
+                    <p>Someone else is also interested in {{ pet.name}}, you can check back later</p>
+                {% else %}
+                    <p>Sorry, {{ pet.name}} has already been adopted</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

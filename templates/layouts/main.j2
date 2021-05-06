@@ -31,7 +31,14 @@
                 <li style="float:right;"><a href="/logout">Sign Out</a></li>
 
             {% elif session['adopter_loggedin'] %}
-                <li><a href="/adopter_home">Adopter Home</a></li>
+                <li class="dropdown">
+                    <a href="/adopter_home" class="dropbtn">Adopter Home</a>
+                    <div class="dropdown-content">
+                        <a href="/browse_cats">Browse Cats</a>
+                        <a href="/browse_dogs">Browse Dogs</a>
+                        <a href="/browse_others">Browse Others</a>
+                    </div>
+                </li>
                 <li><a href="/customer_find_your_pet">Find Your Pet</a></li>
                 <li style="float:right;"><a href="/profile/{{ session['userID'] }}">Profile</a></li>
                 <li style="float:right;"><a href="/logout">Sign Out</a></li>

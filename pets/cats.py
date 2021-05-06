@@ -8,7 +8,19 @@ import base64
 
 cats_api = Blueprint('cats_api', __name__)
 
-#Cats Archive page, show all cats
+# Routes
+# Adopter protocol
+# Adopter browse all cats
+@cats_api.route('/browse_cats')
+def browse_cats():
+    db_connection = db.db_connection
+    query = 'SELECT * FROM Pets WHERE type = "%s";' % ("cat")
+    cursor = db.execute_query(db_connection, query)
+    results = cursor.fetchall()
+    return render_template('browse_cats.j2', cats=results, base64=base64)
+
+# Admin protocol
+# Cats Archive page, show all cats
 @cats_api.route('/cats_archive')
 def cats_archive():
     db_connection = db.db_connection
