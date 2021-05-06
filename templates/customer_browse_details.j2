@@ -8,9 +8,48 @@
             </div>
             <div class="adopter-detail-content">
                 <h3>About</h3>
-                <p>{{ dog.age}} months old &middot {{ dog.gender}} &middot {{ dog.size}}</p>
+                <p>{{ dog.breed}} &middot {{ dog.age}} months &middot {{ dog.gender}}</p>
+                <p>- Size: {{ dog.size}}</p>
+                <p>- Is {{ dog.name }} good with other dogs? 
+                    {% if dog.goodWithDogs %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+                <p>- Is {{ dog.name }} good with cats? 
+                    {% if dog.goodWithCats %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+                <p>- Is {{ dog.name }} good with kids? 
+                    {% if dog.goodWithKids %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+                <p>- {{ dog.name }} must be leashed? 
+                    {% if dog.mustBeLeashed %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
                 <h3>Think about {{ dog.name}} might be a match?</h3>
+                {% if dog.availability == "available" %}
+                    <form id="adopter_browse_details_form" action="/browse_details/{{ dog.petsID }}" method="post">
+                        <input type="submit" name="request_to_adopte" value="Send request to adopt {{ dog.name}}"/>
+                    </form>
+                {% elif dog.availability == "pending"%}
+                    <p>Someone else is also interested in {{ dog.name}}, you can check back later</p>
+                {% else %}
+                    <p>Sorry, {{ dog.name}} has already been adopted</p>
+                {% endif %}
             </div>
         </div>
     {% endfor %}
+    <p><button onclick="location.href='/browse_dogs'" class="input-btn">Back to view all dogs</button></p>
 {% endblock %}
