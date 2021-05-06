@@ -6,7 +6,7 @@
             <div class="browse-content">
                 <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" class="browse-img" width="200" height="150" alt="img">
                 <div class="browse-name">
-                    <a href="/browse_details/{{ dog.petsID }}">{{ dog['name'] }}</a>
+                    <a href="/browse_details/{{ dog.petsID }}">{{ dog.name }}</a>
                     <br>{{ dog.availability }}</br>
                 </div>
             </div>

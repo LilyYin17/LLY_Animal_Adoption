@@ -267,7 +267,7 @@ def browse_detail(id):
       query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
       cursor = db.execute_query(db_connection, query)
       results = cursor.fetchall()
-      return render_template('customer_browse_details.j2', dogs=results, base64=base64)
+      return render_template('customer_browse_details.j2', pets=results, base64=base64)
    elif request.method == 'POST':
       # Customer click "adopt" button, pet becomes "pending"
       query = "UPDATE Pets SET availability='pending' WHERE petsID=%d;" % (id)
