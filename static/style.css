@@ -81,9 +81,10 @@ li.dropdown {
   width: 650px;
   border-radius: 25px;
   background-color: #bfbfbf;
+  display: inline-block;
   position: relative;
   top: 40px;
-  left: 50px;
+  right: 50px;
 }
 
 /* Style adopter div on landing page */
@@ -92,9 +93,10 @@ li.dropdown {
   width: 650px;
   border-radius: 25px;
   background-color: #bfbfbf;
+  display: inline-block;
   position: relative;
-  top: -260px;
-  left: 800px;
+  top: 40px;
+  left: 50px;
 }
 
 .shelter-div img {
@@ -164,7 +166,7 @@ li.dropdown {
   color: #404040;
   text-align: left;
   position: relative;
-  top: -220px;
+  top: 80px;
 }
 
 /* Style the cat block in adopter and shelter home pages */
