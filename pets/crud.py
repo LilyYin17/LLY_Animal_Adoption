@@ -100,7 +100,7 @@ def admin_find_a_dog():
 @crud_api.route('/admin_find_a_cat', methods=['GET', 'POST'])
 def admin_find_a_cat():
 
-   # get all existing cat's breeds from database
+   # Get all existing cat's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
       query = 'SELECT breed FROM Pets WHERE type = "%s"' % ("cat")
@@ -221,7 +221,7 @@ def admin_find_other_pet():
 #     return render_template('admin_add_new_pet_result.j2')
 
 
-#Admin views pets details, give id is petsID in Pets table
+# Admin views pets details, give id is petsID in Pets table
 @crud_api.route('/admin_view_details/<int:id>')
 def view_details(id):
    db_connection = db.db_connection
@@ -275,11 +275,11 @@ def browse_detail(id):
       db.execute_query(db.db_connection, query)
       return render_template('customer_request_ok.j2', userID=session['userID'])
       
-#Adopter find a dog page
+# Adopter find a dog page
 @crud_api.route('/adopter_find_a_dog', methods=['GET', 'POST'])
 def adopter_find_a_dog():
 
-   #get all existing dog's breeds from database
+   # Get all existing dog's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
       query = 'SELECT breed FROM Pets WHERE type = "%s"' % ("dog")
@@ -334,11 +334,11 @@ def adopter_find_a_dog():
         results = cursor.fetchall()
         return render_template('adopter_detailed_find_your_dog.j2', dogs=results, base64=base64)
 
-#Adopter find a cat page
+# Adopter find a cat page
 @crud_api.route('/adopter_find_a_cat', methods=['GET', 'POST'])
 def adopter_find_a_cat():
 
-   #get all existing dog's breeds from database
+   # Get all existing dog's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
       query = 'SELECT breed FROM Pets WHERE type = "%s"' % ("cat")
@@ -393,11 +393,11 @@ def adopter_find_a_cat():
         results = cursor.fetchall()
         return render_template('adopter_detailed_find_your_cat.j2', cats=results, base64=base64)
 
-#Adopter find other pet page
+# Adopter find other pet page
 @crud_api.route('/adopter_find_other_pet', methods=['GET', 'POST'])
 def adopter_find_other_pet():
 
-   #get all existing dog's breeds from database
+   # Get all existing dog's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
       query = 'SELECT breed FROM Pets WHERE type = "%s"' % ("others")
@@ -451,16 +451,3 @@ def adopter_find_other_pet():
         cursor = db.execute_query(db_connection, base_query)
         results = cursor.fetchall()
         return render_template('adopter_detailed_find_other_pet.j2', others=results, base64=base64)
-
-
-
-
-
-#Adopter views pets details, give id is petsID in Pets table
-@crud_api.route('/adopter_view_details/<int:id>')
-def adopter_view_details(id):
-   db_connection = db.db_connection
-   query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
-   cursor = db.execute_query(db_connection, query)
-   results = cursor.fetchall()
-   return render_template('adopter_view_details.j2', dogs=results, base64=base64)
