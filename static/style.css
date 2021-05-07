@@ -167,37 +167,39 @@ li.dropdown {
   top: -220px;
 }
 
-/* Style the cat block in landing page */
+/* Style the cat block in adopter and shelter home pages */
 .catDiv {
   height: 300px;
   width: 400px;
   border-radius: 25px;
   background-color: #bfbfbf;
+  display: inline-block;
   position: relative;
   top: 25px;
-  left: 50px;
+  right: 100px;
 }
 
-/* Style the dog block in landing page */
+/* Style the dog block in adopter and shelter home pages */
 .dogDiv {
   height: 300px;
   width: 400px;
   border-radius: 25px;
   background-color: #bfbfbf;
+  display: inline-block;
   position: relative;
-  top: -275px;
-  left: 550px;
+  top: 25px;
 }
 
-/* Style the other pets block in landing page */
+/* Style the other pets block in adopter and shelter home pages */
 .otherDiv {
   height: 300px;
   width: 400px;
   border-radius: 25px;
   background-color: #bfbfbf;
+  display: inline-block;
   position: relative;
-  top: -575px;
-  left: 1050px;
+  top: 25px;
+  left: 100px;
 }
 
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_css_image_overlay_opacity */
@@ -260,7 +262,7 @@ li.dropdown {
   color: #404040;
   text-align: left;
   position: relative;
-  top: -535px;
+  top: 55px;
 }
 
 /* Style the top bar menu favorites icon */
@@ -328,29 +330,6 @@ li.dropdown {
 
 .input-btn:hover {
   background-color: #262626;
-}
-
-/* Style shelter home page */
-.shelter-home-link {
-  height: 55px;
-  width: 500px;
-  border-radius: 5px;
-  background-color: #bfbfbf;
-  position: relative;
-  top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.shelter-home-link a {
-  color: #1a1a1a;
-  text-decoration: none;
-  position: relative;
-  top: 20px;
-}
-
-.shelter-home-link a:hover {
-  color: #ffffff;
 }
 
 /* Style view list on the admin view details page */
