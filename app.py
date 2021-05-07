@@ -176,9 +176,6 @@ def customer_detailed_find_your_pet():
 def admin_others():
     return render_template('admin_others.j2')
 
-@app.route('/customer_others', methods=['GET', 'POST'])
-def customer_others():
-    return render_template('customer_others.j2')
 
 @app.route('/admin_add_new_pet_result', methods=['GET', 'POST'])
 def admin_add_new_pet_result():

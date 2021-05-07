@@ -40,7 +40,19 @@
                         <a href="/browse_others">Browse Others</a>
                     </div>
                 </li>
-                <li><a href="/customer_find_your_pet">Find Your Pet</a></li>
+                
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Find A Pet</a>
+                    <div class="dropdown-content">
+                        <a href="/adopter_find_a_cat">Find A Cat</a>
+                        <a href="/adopter_find_a_dog">Find A Dog</a>
+                        <a href="/adopter_find_other_pet">Find Another Pet</a>
+                    </div>
+                </li>
+
+
+                <li style="float:right;"><a href="/profile/{{ session['userID'] }}">Profile</a></li>
                 <li style="float:right;"><a href="/logout">Sign Out</a></li>
                 <li style="float:right;"><a href="/profile/{{ session['userID'] }}">Profile</a></li>
 

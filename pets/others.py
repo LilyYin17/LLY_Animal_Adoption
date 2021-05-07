@@ -8,11 +8,19 @@ import base64
 
 others_api = Blueprint('others_api', __name__)
 
-#Routes
+
+# Routes
+# Adopter protocol
+# Adopter browse all other pets.
 @others_api.route('/browse_others')
 def browse_others():
-    return render_template('browse_others.j2')
+    db_connection = db.db_connection
+    query = 'SELECT * FROM Pets WHERE type = "%s";' % ("others")
+    cursor = db.execute_query(db_connection, query)
+    results = cursor.fetchall()
+    return render_template('browse_others.j2', others=results, base64=base64)
 
+# Admin protocol
 #Other pets Archive page, show all other pets.
 @others_api.route('/others_archive')
 def others_archive():

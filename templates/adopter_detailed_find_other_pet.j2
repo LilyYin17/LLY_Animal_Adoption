@@ -1,0 +1,28 @@
+
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2> Detailed Pet </h2>
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Gender</th>
+            <th>Availability</th>
+            <th colspan="3">Actions</th>
+        </tr>
+
+                <tbody>
+        {% for other in others %}
+            <tr>
+                <td>{{ other['petsID'] }}</td>
+                <td>{{ other['name'] }}</td>
+                <td><img src="data:;base64,{{ base64.b64encode(other.img).decode() }}" width="200" height="120" alt="img"></td>
+                <td>{{ other['gender'] }}</td>
+                <td>{{ other['availability'] }}</td>
+                <td><input type='button' name='View' value='View' onclick="window.location ='/browse_details/{{ other.petsID }}'"> </td> 
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
