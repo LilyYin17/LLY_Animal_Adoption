@@ -259,6 +259,22 @@ def update_details(id):
       results = cursor.fetchall()
       return render_template('admin_view_details.j2', dogs=results, base64=base64)
 
+# Adopter protocol
+# Adopter browse pet details, give id is petsID
+@crud_api.route('/browse_details/<int:id>', methods=['POST', 'GET'])
+def browse_detail(id):
+   db_connection = db.db_connection
+   if request.method == 'GET':
+      query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
+      cursor = db.execute_query(db_connection, query)
+      results = cursor.fetchall()
+      return render_template('customer_browse_details.j2', pets=results, base64=base64)
+   elif request.method == 'POST':
+      # Customer click "adopt" button, pet becomes "pending"
+      query = "UPDATE Pets SET availability='pending' WHERE petsID=%d;" % (id)
+      db.execute_query(db.db_connection, query)
+      return render_template('customer_request_ok.j2', userID=session['userID'])
+      
 #Adopter find a dog page
 @crud_api.route('/adopter_find_a_dog', methods=['GET', 'POST'])
 def adopter_find_a_dog():
