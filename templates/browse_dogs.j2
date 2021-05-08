@@ -1,15 +1,12 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
-    <h3>All Dogs</h3>
-    <div class="browse-container">
-        {% for dog in dogs %}
-            <div class="browse-content">
-                <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}" class="browse-img" width="200" height="150" alt="img">
-                <div class="browse-name">
-                    <a href="/browse_details/{{ dog.petsID }}">{{ dog.name }}</a>
-                    <br>{{ dog.availability }}</br>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    <h2 class="page-name">All Dogs</h2>
+    {% for dog in dogs %}
+        <div class="browse-container">
+            <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}">
+            <h3 style="color:#404040;">{{ dog.name }}</h3>
+            <h3 style="color:#404040;">* {{ dog.availability }} *</h3>
+            <button onclick="window.location.href='/browse_details/{{ dog.petsID }}'">View Details</button>
+        </div>
+    {% endfor %}
 {% endblock %}
