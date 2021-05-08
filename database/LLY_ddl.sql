@@ -37,3 +37,16 @@ CREATE TABLE `Pets` (
 	`availability` varchar(255) NOT NULL,
 	PRIMARY KEY (`petsID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `AdminMsg`
+--
+USE adoptionproject;
+DROP TABLE IF EXISTS `AdminMsg`;
+CREATE TABLE `AdminMsg` (
+	`adminMsgID` int(11) NOT NULL AUTO_INCREMENT,
+	`petsID` int(11) NOT NULL,
+	`customerID` int(11) NOT NULL,
+	CONSTRAINT `AdminMsg_Customers_fk_1` FOREIGN KEY (`customerID`) REFERENCES `Customers`(`customerID`) ON DELETE CASCADE,
+	PRIMARY KEY (`adminMsgID`)
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
