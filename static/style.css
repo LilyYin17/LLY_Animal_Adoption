@@ -429,6 +429,7 @@ td {
   cursor: pointer;
   width: 100%;
   font-size: 17px;
+  margin-top: 5px;
 }
 
 .browse-container button:hover {
