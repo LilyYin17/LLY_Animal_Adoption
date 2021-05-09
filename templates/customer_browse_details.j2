@@ -1,54 +1,61 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
     {% for pet in pets %}
-    <h2>Meet {{ pet.name }}</h2>
-        <div class="adopter-detail-container">
-            <div class="pets-details-img">
-                <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" style="width:60%;" alt="img">
-            </div>
-            <div class="adopter-detail-content">
-                <h3>About</h3>
-                <p>{{ pet.breed}} &middot {{ pet.age}} months &middot {{ pet.gender}}</p>
-                <p>- Size: {{ pet.size}}</p>
-                <p>- Is {{ pet.name }} good with other dogs? 
-                    {% if pet.goodWithDogs %}
-                        Yes
-                    {% else %}
-                        No
-                    {% endif %}
-                </p>
-                <p>- Is {{ pet.name }} good with cats? 
-                    {% if pet.goodWithCats %}
-                        Yes
-                    {% else %}
-                        No
-                    {% endif %}
-                </p>
-                <p>- Is {{ pet.name }} good with kids? 
-                    {% if pet.goodWithKids %}
-                        Yes
-                    {% else %}
-                        No
-                    {% endif %}
-                </p>
-                <p>- {{ pet.name }} must be leashed? 
-                    {% if pet.mustBeLeashed %}
-                        Yes
-                    {% else %}
-                        No
-                    {% endif %}
-                </p>
-                <h3>Think about {{ pet.name}} might be a match?</h3>
-                {% if pet.availability == "available" %}
-                    <form id="adopter_browse_details_form" action="/browse_details/{{ pet.petsID }}" method="post">
-                        <input type="submit" name="request_to_adopte" value="Send request to adopt {{ pet.name}}"/>
-                    </form>
-                {% elif pet.availability == "pending"%}
-                    <p>Someone else is also interested in {{ pet.name}}, you can check back later</p>
+        <h2 class="page-name">Meet {{ pet.name }}</h2>
+        <br>
+        <div class="adopter-pet-details">
+            <br><br>
+            <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" style="width:80%;" alt="img" class="petsDetails">
+            <br>
+            <h3 class="page-name">About {{ pet.name }}</h3>
+            <h4 class="page-name">{{ pet.breed}} &middot {{ pet.age}} months &middot {{ pet.gender}} &middot {{ pet.size}} size</h4>
+            <br>
+            <p>- {{ pet.name }}
+                {% if pet.goodWithDogs %}
+                    IS
                 {% else %}
-                    <p>Sorry, {{ pet.name}} has already been adopted</p>
+                    is NOT
                 {% endif %}
-            </div>
+                good with other dogs -
+            </p>
+            <p>- {{ pet.name }}
+                {% if pet.goodWithCats %}
+                    IS
+                {% else %}
+                    is NOT
+                {% endif %}
+                good with cats -
+            </p>
+            <p>- {{ pet.name }}
+                {% if pet.goodWithKids %}
+                    IS
+                {% else %}
+                    is NOT
+                {% endif %}
+                good with kids -
+            </p>
+            <p>- {{ pet.name }}
+                {% if pet.mustBeLeashed %}
+                    MUST
+                {% else %}
+                    does NOT need to
+                {% endif %}
+                be leashed -
+            </p>
+            <br>
+            <h4 class="page-name">Think about {{ pet.name}} might be a match?</h4>
+            {% if pet.availability == "available" %}
+                <br>
+                <form id="adopter_browse_details_form" action="/browse_details/{{ pet.petsID }}" method="post">
+                    <input type="submit" name="request_to_adopte" class="input-btn" value="Send request to adopt {{ pet.name}}"/>
+                </form>
+                <br>
+            {% elif pet.availability == "pending"%}
+                <p>Someone else is also interested in {{ pet.name}}, you can check back later!</p>
+            {% else %}
+                <p>Sorry, {{ pet.name}} has already been adopted!</p>
+            {% endif %}
+            <br>
         </div>
     {% endfor %}
 {% endblock %}
