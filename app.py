@@ -167,10 +167,6 @@ def profile(id):
 def customer_find_your_pet():
     return render_template('customer_find_your_pet.j2')
 
-@app.route('/customer_detailed_find_your_pet', methods=['GET', 'POST'])
-def customer_detailed_find_your_pet():
-    return render_template('customer_detailed_find_your_pet.j2')
-
 #Other pet page
 @app.route('/admin_others', methods=['GET', 'POST'])
 def admin_others():
