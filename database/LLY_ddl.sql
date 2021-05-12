@@ -47,6 +47,8 @@ CREATE TABLE `AdminMsg` (
 	`adminMsgID` int(11) NOT NULL AUTO_INCREMENT,
 	`petsID` int(11) NOT NULL,
 	`customerID` int(11) NOT NULL,
+	`message` varchar(255),
+	`status` varchar(255) NOT NULL,
 	CONSTRAINT `AdminMsg_Customers_fk_1` FOREIGN KEY (`customerID`) REFERENCES `Customers`(`customerID`) ON DELETE CASCADE,
 	PRIMARY KEY (`adminMsgID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
