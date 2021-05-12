@@ -15,8 +15,8 @@
     {% for message in messages %}
         <table>
             <tr>
-                <td style="width:20%">{{ message.customerEmail }}</td>
-                <td style="width:20%">{{ message.petsID }}</td>
+                <td style="width:20%"><input type='button' name='{{ message.customerEmail }}' value='{{ message.customerEmail }}' onclick="#" class="archive-btn"> </td>
+                <td style="width:20%"><input type='button' name='{{ message.petsID }}' value='{{ message.petsID }}' onclick="window.location ='/admin_view_details/{{ message.petsID }}'" class="archive-btn"></td>
                 <td style="width:20%">{{ message.status }}</td>
                 </td><td style="width:10%"><input type='button' name='Approve' value='Approve' onclick="#" class="archive-btn"> 
                 </td><td style="width:10%"><input type='button' name='Ignore' value='Ignore' onclick="#" class="archive-btn">
