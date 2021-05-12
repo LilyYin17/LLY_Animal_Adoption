@@ -78,16 +78,13 @@ def shelter_login():
             return render_template('shelter_login_error.j2')
 
 # Shelter message page
-@app.route('/shelter_message', methods=['GET', 'POST'])
+@app.route('/shelter_message')
 def shelter_mess():
-    if request.method == 'GET':
-        return render_template('shelter_message.j2')
-    elif request.method == 'POST':
-        db_connection = db.db_connection
-        query = 'SELECT * FROM AdminMsg'
-        cursor = db.execute_query(db_connection, query)
-        results = cursor.fetchall()
-        return render_template('shelter_message.j2', messages = results)
+    db_connection = db.db_connection
+    query = 'SELECT * FROM AdminMsg'
+    cursor = db.execute_query(db_connection, query)
+    results = cursor.fetchall()
+    return render_template('shelter_message.j2', messages = results)
 
 # Adopter log in page
 @app.route('/adopter_login', methods=['GET', 'POST'])
