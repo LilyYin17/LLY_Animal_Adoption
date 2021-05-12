@@ -8,56 +8,55 @@ from pets.cats import cats_api
 from pets.others import others_api
 from pets.crud import crud_api
 
-#Configuration
+# Configuration
 app = Flask(__name__)
 app.secret_key = 'your secret key'
 
-#Improt dogs.py
+# Improt dogs.py
 app.register_blueprint(dogs_api)
 
-#Improt cats.py
+# Improt cats.py
 app.register_blueprint(cats_api)
 
-
-#Improt others.py
+# Improt others.py
 app.register_blueprint(others_api)
 
-#Improt crud.py
+# Improt crud.py
 app.register_blueprint(crud_api)
 
 
-#Routes
-#Landing page
+# Routes
+# Landing page
 @app.route('/')
 def root():
     return render_template('landing_page.j2')
 
-#Adopter home page
+# Adopter home page
 @app.route('/adopter_home')
 def adpoter_home():
-    #check is user is logged in
+    # Check is user is logged in
     if 'adopter_loggedin' in session:
         return render_template('adopter_home.j2', userID=session['userID'])
-    #user is not logged in
+    # User is not logged in
     return render_template('adopter_login.j2') 
 
-#Shelter home page
+# Shelter home page
 @app.route('/shelter_home')
 def shelter_home():
-    #check is user is logged in
+    # Check is user is logged in
     if 'shelter_loggedin' in session:
         return render_template('shelter_home.j2', userID=session['userID'])
-    #user is not logged in
+    # User is not logged in
     return render_template('shelter_login.j2') 
 
-#Shelter log in page
+# Shelter log in page
 @app.route('/shelter_login', methods=['GET', 'POST'])
 def shelter_login():
     if request.method == 'GET':
         return render_template('shelter_login.j2')
     elif request.method == 'POST':
         db_connection = db.db_connection
-        #Check if account exists 
+        # Check if account exists 
         query = 'SELECT * FROM Customers WHERE email = %s AND password = %s'
         email = request.form['email']
         psw = request.form['password']
@@ -65,27 +64,36 @@ def shelter_login():
         cursor = db.execute_query(db_connection, query, data)
         results = cursor.fetchall()
         if results:
-            #Successful loggedin
+            # Successful loggedin
             session['username'] = email
             if email == 'admin@oregonstate.edu': #If user is admin
                 session['shelter_loggedin'] = True
                 session['userID'] = results[0]["customerID"]
                 return redirect(url_for('shelter_home', variable=session['userID']))
-            else: #If user is regular customer
+            else: # If user is regular customer
                 return render_template('shelter_login_error.j2')
         else:
             cursor.close()
-            #Account does not exist or username/password incorrect
+            # Account does not exist or username/password incorrect
             return render_template('shelter_login_error.j2')
 
-#Adopter log in page
+# Shelter message page
+@app.route('/shelter_message')
+def shelter_mess():
+    db_connection = db.db_connection
+    query = 'SELECT * FROM AdminMsg'
+    cursor = db.execute_query(db_connection, query)
+    results = cursor.fetchall()
+    return render_template('shelter_message.j2', messages = results)
+
+# Adopter log in page
 @app.route('/adopter_login', methods=['GET', 'POST'])
 def adopter_login():
     if request.method == 'GET':
         return render_template('adopter_login.j2')
     elif request.method == 'POST':
         db_connection = db.db_connection
-        #Check if account exists 
+        # Check if account exists 
         query = 'SELECT * FROM Customers WHERE email = %s AND password = %s'
         email = request.form['email']
         psw = request.form['password']
@@ -93,29 +101,29 @@ def adopter_login():
         cursor = db.execute_query(db_connection, query, data)
         results = cursor.fetchall()
         if results:
-            #Successful loggedin
+            # Successful loggedin
             session['username'] = email
             session['userID'] = results[0]["customerID"]
-            if email == 'admin@oregonstate.edu': #If user is admin
+            if email == 'admin@oregonstate.edu': # If user is admin
                 return render_template('adopter_login_error.j2')
-            else: #If user is regular customer
+            else: # If user is regular customer
                 session['adopter_loggedin'] = True
                 return redirect(url_for('adpoter_home', variable=session['userID']))
         else:
-            #Account does not exist or username/password incorrect
+            # Account does not exist or username/password incorrect
             return render_template('adopter_login_error.j2')
 
-#Log out
+# Log out
 @app.route('/logout')
 def logout():
-    #Remove session data
+    # Remove session data
     session.pop('shelter_loggedin', None)
     session.pop('adopter_loggedin', None)
     session.pop('username', None)
     session.pop('userID', None)
     return redirect(url_for('root'))
 
-#Sign up page
+# Sign up page
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     if request.method == 'GET':
@@ -127,7 +135,7 @@ def signup():
         data = (email)
         cursor = db.execute_query(db_connection, query, data)
         results = cursor.fetchall()
-        #Check if account exists using MySQL
+        # Check if account exists using MySQL
         if results:
             return render_template('user_already_exists_page.j2')
         else:
@@ -138,7 +146,7 @@ def signup():
             db.execute_query(db_connection, query, data)
             return redirect(url_for('adopter_login'))
 
-#Profile page
+# Profile page
 @app.route('/profile/<int:id>', methods=['GET','POST'])
 def profile(id):
     user_id = id
@@ -158,7 +166,7 @@ def profile(id):
         db.execute_query(db_connection, query)
         return redirect(url_for('adpoter_home', variable=user_id))
 
-#Find your pet page, move to crud.py
+# Find your pet page, move to crud.py
 # @app.route('/admin_find_your_pet', methods=['GET', 'POST'])
 # def admin_find_your_pet():
 #     return render_template('admin_find_your_pet.j2')
@@ -167,7 +175,7 @@ def profile(id):
 def customer_find_your_pet():
     return render_template('customer_find_your_pet.j2')
 
-#Other pet page
+# Other pet page
 @app.route('/admin_others', methods=['GET', 'POST'])
 def admin_others():
     return render_template('admin_others.j2')
