@@ -1,0 +1,27 @@
+{% extends 'layouts/main.j2' %}
+{% block content %}
+    <h2>Messages</h2> 
+    <br> 
+    <table>
+        <tr>
+            <th style="width:20%">From</th>
+            <th style="width:20%">Request Pet Id</th>
+            <th style="width:20%">Message Status</th>
+            <th style="width:20%">Actions</th>
+        </tr>
+    </table>
+    <br>
+
+    {% for message in messages %}
+        <table>
+            <tr>
+                <td style="width:20%">{{ message.customerID }}</td>
+                <td style="width:20%">{{ message.petsID }}</td>
+                <td style="width:20%">{{ message.status }}</td>
+                <td style="width:20%">{{ dog['gender'] }}</td><td style="width:10%"><input type='button' name='Delete' value='Delete' onclick="#" class="archive-btn"> </td>
+            </tr>
+        <table>
+        <br>
+    {% endfor %}
+    <br>
+{% endblock %}

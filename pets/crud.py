@@ -273,6 +273,13 @@ def browse_detail(id):
       # Customer click "adopt" button, pet becomes "pending"
       query = "UPDATE Pets SET availability='pending' WHERE petsID=%d;" % (id)
       db.execute_query(db.db_connection, query)
+      # Send message to AdminMsg table
+      query = 'INSERT INTO AdminMsg(petsID, customerID, status) VALUES (%s, %s, %s)'
+      petsID = id
+      customerID = session['userID']
+      status = "pending"
+      data = (petsID, customerID, status)
+      cursor = db.execute_query(db_connection, query, data)
       return render_template('customer_request_ok.j2', userID=session['userID'])
       
 # Adopter find a dog page
