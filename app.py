@@ -88,14 +88,16 @@ def shelter_mess():
         return render_template('shelter_message.j2', messages = results)
     elif request.method == 'POST':
         msgID = request.form['messageID']
-        if request.form["action_identifier"] == "Approve":  # Admin approve adopter request, and change pet's status
+        petID = request.form['petID']   
+        if request.form["action_identifier"] == "Approve":  # Admin approve adopter request, and change pet's status to adopted
             query = "UPDATE AdminMsg SET status='approved' WHERE adminMsgID=%s;" % (msgID)
             db.execute_query(db.db_connection, query)
-            petID = request.form['petID']   # Admin change pet's availability to adopted
             query = "UPDATE Pets SET availability='adopted' WHERE petsID=%s;" % (petID)
             db.execute_query(db.db_connection, query)
-        elif request.form["action_identifier"] == "Ignore": # Admin ignore adopter request
+        elif request.form["action_identifier"] == "Ignore": # Admin ignore adopter request, and change pet's status to available
             query = "UPDATE AdminMsg SET status='ignored' WHERE adminMsgID=%s;" % (msgID)
+            db.execute_query(db.db_connection, query)
+            query = "UPDATE Pets SET availability='available' WHERE petsID=%s;" % (petID)
             db.execute_query(db.db_connection, query)
         query = 'SELECT * FROM AdminMsg'
         cursor = db.execute_query(db_connection, query)

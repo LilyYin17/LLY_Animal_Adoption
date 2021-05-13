@@ -1,6 +1,6 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
-    <h2>Messages {{ msgID}}</h2> 
+    <h2>Messages</h2> 
     <br> 
     <table>
         <tr>
@@ -28,6 +28,7 @@
                 <td style="width:10%">
                     <form action="/shelter_message" method="post">
                         <input type="hidden" name="messageID" value="{{ message.adminMsgID }}"/>
+                        <input type="hidden" name="petID" value="{{ message.petsID }}"/>
                         <input type="submit" name="action_identifier" class="archive-btn" value="Ignore">
                     </form>
                 </td>
