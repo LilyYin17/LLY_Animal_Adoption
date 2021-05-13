@@ -77,14 +77,30 @@ def shelter_login():
             # Account does not exist or username/password incorrect
             return render_template('shelter_login_error.j2')
 
-# Shelter message page
-@app.route('/shelter_message')
+# Admin: Shelter message page
+@app.route('/shelter_message', methods=['GET', 'POST'])
 def shelter_mess():
     db_connection = db.db_connection
-    query = 'SELECT * FROM AdminMsg'
-    cursor = db.execute_query(db_connection, query)
-    results = cursor.fetchall()
-    return render_template('shelter_message.j2', messages = results)
+    if request.method == 'GET':
+        query = 'SELECT * FROM AdminMsg'
+        cursor = db.execute_query(db_connection, query)
+        results = cursor.fetchall()
+        return render_template('shelter_message.j2', messages = results)
+    elif request.method == 'POST':
+        msgID = request.form['messageID']
+        if request.form["action_identifier"] == "Approve":  # Admin approve adopter request, and change pet's status
+            query = "UPDATE AdminMsg SET status='approved' WHERE adminMsgID=%s;" % (msgID)
+            db.execute_query(db.db_connection, query)
+            petID = request.form['petID']   # Admin change pet's availability to adopted
+            query = "UPDATE Pets SET availability='adopted' WHERE petsID=%s;" % (petID)
+            db.execute_query(db.db_connection, query)
+        elif request.form["action_identifier"] == "Ignore": # Admin ignore adopter request
+            query = "UPDATE AdminMsg SET status='ignored' WHERE adminMsgID=%s;" % (msgID)
+            db.execute_query(db.db_connection, query)
+        query = 'SELECT * FROM AdminMsg'
+        cursor = db.execute_query(db_connection, query)
+        results = cursor.fetchall()
+        return render_template('shelter_message.j2', messages=results, msgID=msgID)
 
 # Adopter log in page
 @app.route('/adopter_login', methods=['GET', 'POST'])
