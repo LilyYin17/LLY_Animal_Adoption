@@ -259,6 +259,16 @@ def update_details(id):
       results = cursor.fetchall()
       return render_template('admin_view_details.j2', dogs=results, base64=base64)
 
+# Admin views adopter details, give parameter is customer email
+@crud_api.route('/admin_view_adopter/<string:email>')
+def view_adopter(email):
+   db_connection = db.db_connection
+   query = 'SELECT * FROM Customers WHERE email = %s'
+   data = (email)
+   cursor = db.execute_query(db_connection, query, data)
+   results = cursor.fetchall()
+   return render_template('admin_view_adopter.j2', adopters=results)
+
 # Adopter protocol
 # Adopter browse pet details, give id is petsID
 @crud_api.route('/browse_details/<int:id>', methods=['POST', 'GET'])
