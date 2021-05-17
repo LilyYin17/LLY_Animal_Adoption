@@ -15,9 +15,10 @@ $(function() {
   });
 });
 
-$(function() {
-  $( ".like-button" ).click(function() {
-    $(this).toggleClass( "press", 1000 );
-  });
-});
+// TODO:ADD ajax for this function
+// $(function() {
+//   $( ".like-button" ).click(function() {
+//     $(this).toggleClass( "press", 1000 );
+//   });
+// });
 

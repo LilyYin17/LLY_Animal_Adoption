@@ -519,3 +519,37 @@ def customer_like_pet(id):
       cursor = db.execute_query(db_connection, query, data)
       return "success"
       # return render_template('customer_like_pet_result.j2', customerID=session['userID'])
+
+
+   # @crud_api.route('/customer_like_pet_list')
+   # def customer_like_pet_list():
+   #  if 'adopter_loggedin' in session:
+   #      return render_template('adopter_home.j2', userID=session['userID'])
+   #  # User is not logged in
+   #  return render_template('adopter_login.j2') 
+
+
+    # Adopter browse pet details, give id is petsID
+@crud_api.route('/customer_like_pet_list', methods=['POST', 'GET'])
+def customer_like_pet_list():
+   db_connection = db.db_connection
+   query = 'SELECT * FROM CustomerLikePet WHERE customerID = %d;' % (session['userID'])
+   cursor = db.execute_query(db_connection, query)
+   likedResult = cursor.fetchall()
+
+   print(likedResult)
+
+   likedPetsIdList = [pet['petsID'] for pet in likedResult]
+   print(likedPetsIdList)
+   query = 'SELECT * FROM Pets WHERE petsID IN (%s);' % (",".join(str(elem) for elem in likedPetsIdList))
+
+   cursor = db.execute_query(db_connection, query)
+   results = cursor.fetchall()
+   return render_template('customer_like_pet_list.j2', likePets=results, base64=base64)
+
+   
+   
+   # likedPetsIdList = [pet['petsID'] for pet in likedResult]
+   # print(likedPetsIdList)
+
+   # return render_template('customer_like_pet_list.j2', pets=likedResult, base64=base64)

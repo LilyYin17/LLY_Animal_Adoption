@@ -66,3 +66,6 @@ def delete_other(id):
    cursor = db.execute_query(db_connection, query)
    results = cursor.fetchall()
    return redirect(url_for('others_api.others_archive'))
+
+
+
