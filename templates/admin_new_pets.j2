@@ -1,9 +1,11 @@
 {% extends 'layouts/main.j2' %}
 {% block content %} 
     <h2 class="page-name"> Add New Pets </h2>
+    {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>#}
     <script type=text/javascript src="{{ url_for('static', filename='/admin_new_pets_form.js') }}"></script>
     <div class="container" style="text-align:left; text-indent:50px;">
-        <form id="admin_new_pets_form" action="/admin_new_pets" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required>
+    <form id="admin_new_pets_form" action="/admin_new_pets" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required>
+       {# <form id="admin_new_pets_form"  action="/admin_new_pets" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required> #}
             <p>Type: <select name="type">
                 <option value="">--Please choose an option--</option>
                 <option value="dog">dog</option>

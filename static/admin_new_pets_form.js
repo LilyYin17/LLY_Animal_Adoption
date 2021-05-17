@@ -1,4 +1,6 @@
 function validateForm() {
+    console.log("Validating form");
+
     var type = document.forms["admin_new_pets_form"]["type"].value;
     if (type == "" || type == null) {
         alert("must choose one type");
@@ -26,3 +28,34 @@ function validateForm() {
         return false;
     }
 }
+
+
+// $(function() {
+//     $('#admin_new_pets_form').submit(function(event) {
+//         console.log("Form submitted");
+//         // var formData = {};
+//         // $.each($(this).serializeArray(), function(i, field) {
+//         //     formData[field.name] = field.value;
+//         // });
+//         // console.log(formData);
+
+//         // $.post('/admin_new_pets', formData);
+
+
+//         // $.ajax({
+//         //     type: "POST",
+//         //     url: $(this).attr( 'action' ),
+//         //     data: $(this).serialize(),
+//         //     success: function( response ) {
+//         //       console.log( response );
+//         //     }
+//         // });
+
+//         event.preventDefault();
+
+//         var formData = new FormData(this);    
+//         $.post($(this).attr("action"), formData, function(data) {
+//             alert(data);
+//         });
+//     }); 
+// });
