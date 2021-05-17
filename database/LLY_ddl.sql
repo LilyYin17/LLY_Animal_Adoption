@@ -52,3 +52,17 @@ CREATE TABLE `AdminMsg` (
 	CONSTRAINT `AdminMsg_Customers_fk_1` FOREIGN KEY (`customerEmail`) REFERENCES `Customers`(`email`) ON DELETE CASCADE,
 	PRIMARY KEY (`adminMsgID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `CustomerLikePet`
+--
+USE adoptionproject;
+DROP TABLE IF EXISTS `CustomerLikePet`;
+CREATE TABLE `CustomerLikePet` (
+	`petsID` int(11) NOT NULL,
+	`customerID` int(11) NOT NULL,
+	CONSTRAINT `CustomerLikePet_Pets_fk_1` FOREIGN KEY (`petsID`) REFERENCES `Pets`(`petsID`) ON DELETE CASCADE,
+	CONSTRAINT `CustomerLikePet_Customers_fk_1` FOREIGN KEY (`customerID`) REFERENCES `Customers`(`customerID`) ON DELETE CASCADE,
+	PRIMARY KEY (`petsID`, `customerID` )
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;

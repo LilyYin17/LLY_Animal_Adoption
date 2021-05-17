@@ -1,10 +1,20 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
     <h2 class="page-name">All Other Pets</h2>
+{#    <script type=text/javascript src="{{ url_for('static', filename='/browse_other_form.js') }}"></script>
+    <form id="browse_other_form" onsubmit="return validateForm()" method="post" required> #}
+     
     {% for other in others %}
         <div class="browse-container">
             <img src="data:;base64,{{ base64.b64encode(other.img).decode() }}">
             <h3 style="color:#404040;">{{ other.name }}</h3>
+
+            <br>
+                <form id="adopter_like_button_form" action="/customer_like_pet/{{ other.petsID }}" method="post">
+                    <input type="submit" name="LIKE" class="input-btn" value="LIKE">
+                </form>
+            <br>
+
             <h3 style="color:#404040;">* {{ other.availability }} *</h3>
             <button onclick="window.location.href='/browse_details/{{ other.petsID }}'">View Details</button>
         </div>

@@ -1,9 +1,17 @@
 from flask import Flask, render_template, session
 from flask import request, redirect, url_for
+from flask import jsonify
 from flaskext.mysql import MySQL
 from flask import Blueprint
 import database.db_connector as db
 import base64
+
+
+# import tkinter as tk
+# import tkinter.messagebox
+
+# import time    
+
 
 import os  #debug
 
@@ -17,6 +25,8 @@ def admin_new_pets():
    if request.method == 'GET':
         return render_template('admin_new_pets.j2')
    elif request.method == 'POST':
+      # print(request.json);
+      # print(request.form);
         db_connection = db.db_connection
         query = 'INSERT INTO Pets(type, name, img, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
         type = request.form['type']
@@ -32,9 +42,29 @@ def admin_new_pets():
         mustBeLeashed = request.form['mustBeLeashed']
         availability = request.form['availability']
         data = (type, name, img, breed, age, size, gender, goodWithKids, goodWithDogs, goodWithCats, mustBeLeashed, availability)
-        db.execute_query(db.db_connection, query, data)
-        
-        return redirect(url_for('admin_add_new_pet_result'))
+        cursor = db.execute_query(db.db_connection, query, data)
+
+
+
+      #   def show_warning(msg):    
+      #      top = tkinter.Tk()    
+      #      top.withdraw()    
+      #      top.update()    
+      #      tk.messagebox.showwarning("title", msg)    
+      #      top.destroy()
+
+      #   if __name__ == '__main__':    
+      #      show_warning('example')
+
+      #      print("Printed immediately.")
+      #      time.sleep(2.4)
+      #      print("Printed after 2.4 seconds.")
+
+        return redirect("%s%s" % ("admin_view_details/", cursor.lastrowid))
+               #   return render_template('admin_add_new_pet_result.j2', newPet=results, base64=base64)
+               #   print(cursor.lastrowid)
+               #   return jsonify("success")      
+      #   return redirect(url_for('admin_add_new_pet_result'))
 
 
 # Admin find a dog page
@@ -414,6 +444,7 @@ def adopter_find_a_cat():
 @crud_api.route('/adopter_find_other_pet', methods=['GET', 'POST'])
 def adopter_find_other_pet():
 
+
    # Get all existing dog's breeds from database
    if request.method == 'GET':
       db_connection = db.db_connection
@@ -468,3 +499,19 @@ def adopter_find_other_pet():
         cursor = db.execute_query(db_connection, base_query)
         results = cursor.fetchall()
         return render_template('adopter_detailed_find_other_pet.j2', others=results, base64=base64)
+
+
+#TODO 
+# Adopter like a pet, give id is petsID
+@crud_api.route('/customer_like_pet/<int:id>', methods=['POST', 'GET'])  
+def customer_like_pet(id):
+   db_connection = db.db_connection
+   if request.method == 'POST':
+      # Customer click "LIKE" button
+      query = 'INSERT IGNORE INTO CustomerLikePet(petsID, customerID) VALUES (%s, %s)'
+      petsID = id
+      customerID = session['userID']
+      
+      data = (petsID, customerID)
+      cursor = db.execute_query(db_connection, query, data)
+      return render_template('customer_like_pet_result.j2', customerID=session['userID'])
