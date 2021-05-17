@@ -514,4 +514,5 @@ def customer_like_pet(id):
       
       data = (petsID, customerID)
       cursor = db.execute_query(db_connection, query, data)
-      return render_template('customer_like_pet_result.j2', customerID=session['userID'])
+      return "success"
+      # return render_template('customer_like_pet_result.j2', customerID=session['userID'])
