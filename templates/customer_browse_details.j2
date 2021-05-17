@@ -7,13 +7,6 @@
             <br><br>
             <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" style="width:80%;" alt="img" class="petsDetails">
             <br>
-
-            <br>
-                <form id="adopter_like_pet_form" action="/customer_like_pet/{{ pet.petsID }}" method="post">
-                    <input type="submit" name="LIKE" class="input-btn" value="LIKE"/>
-                </form>
-             <br>
-
             <h3 class="page-name">About {{ pet.name }}</h3>
             <h4 class="page-name">{{ pet.breed}} &middot {{ pet.age}} months &middot {{ pet.gender}} &middot {{ pet.size}} size</h4>
             <br>
@@ -56,13 +49,16 @@
                 <form id="adopter_browse_details_form" action="/browse_details/{{ pet.petsID }}" method="post">
                     <input type="submit" name="request_to_adopte" class="input-btn" value="Send request to adopt {{ pet.name}}"/>
                 </form>
-                <br>
             {% elif pet.availability == "pending"%}
                 <p>Someone else is also interested in {{ pet.name}}, you can check back later!</p>
             {% else %}
                 <p>Sorry, {{ pet.name}} has already been adopted!</p>
             {% endif %}
             <br>
+            <form id="adopter_like_pet_form" action="/customer_like_pet/{{ pet.petsID }}" method="post">
+                <input type="submit" name="LIKE" class="input-btn" value="Like"/>
+            </form>
+            <br><br>
         </div>
     {% endfor %}
 {% endblock %}
