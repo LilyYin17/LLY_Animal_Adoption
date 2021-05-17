@@ -506,6 +506,9 @@ def adopter_find_other_pet():
 @crud_api.route('/customer_like_pet/<int:id>', methods=['POST', 'GET'])  
 def customer_like_pet(id):
    db_connection = db.db_connection
+  
+
+
    if request.method == 'POST':
       # Customer click "LIKE" button
       query = 'INSERT IGNORE INTO CustomerLikePet(petsID, customerID) VALUES (%s, %s)'

@@ -15,3 +15,9 @@ $(function() {
   });
 });
 
+$(function() {
+  $( ".like-button" ).click(function() {
+    $(this).toggleClass( "press", 1000 );
+  });
+});
+

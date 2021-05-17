@@ -18,7 +18,28 @@ def browse_others():
     query = 'SELECT * FROM Pets WHERE type = "%s";' % ("others")
     cursor = db.execute_query(db_connection, query)
     results = cursor.fetchall()
+    petsIdList = [pet['petsID'] for pet in results]
+    print(petsIdList)
+
+    query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in petsIdList))
+    cursor = db.execute_query(db_connection, query)
+    likedResult = cursor.fetchall()
+    print(likedResult)
+
+    # for result in results
+    #     if result.petsID 
+    #     isLiked: falsed
+
+
+
     return render_template('browse_others.j2', others=results, base64=base64)
+
+
+    # query = 'SELECT * FROM CustomerLikePet WHERE customerID = session['userID'] And petsID IN (others.petsID);'
+
+
+
+
 
 # Admin protocol
 #Other pets Archive page, show all other pets.
