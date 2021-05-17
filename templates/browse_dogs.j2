@@ -6,6 +6,8 @@
             <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}">
             <h3 style="color:#404040;">{{ dog.name }}</h3>
             <h3 style="color:#404040;">* {{ dog.availability }} *</h3>
+            <input id="{{ dog.petsID }}" type="button" name="LIKE" class="like-btn" value="Like">
+            <br><br>
             <button onclick="window.location.href='/browse_details/{{ dog.petsID }}'">View Details</button>
         </div>
     {% endfor %}
