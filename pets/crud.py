@@ -533,20 +533,23 @@ def customer_like_pet(id):
 @crud_api.route('/customer_like_pet_list', methods=['POST', 'GET'])
 def customer_like_pet_list():
    db_connection = db.db_connection
+   # user_id = session['userID']
    query = 'SELECT * FROM CustomerLikePet WHERE customerID = %d;' % (session['userID'])
+   # query = "UPDATE AdminMsg SET status='approved' WHERE adminMsgID=%s;" % (msgID)
    cursor = db.execute_query(db_connection, query)
    likedResult = cursor.fetchall()
+   if likedResult:
+      print(likedResult)
 
-   print(likedResult)
+      likedPetsIdList = [pet['petsID'] for pet in likedResult]
+      print(likedPetsIdList)
+      query = 'SELECT * FROM Pets WHERE petsID IN (%s);' % (",".join(str(elem) for elem in likedPetsIdList))
 
-   likedPetsIdList = [pet['petsID'] for pet in likedResult]
-   print(likedPetsIdList)
-   query = 'SELECT * FROM Pets WHERE petsID IN (%s);' % (",".join(str(elem) for elem in likedPetsIdList))
-
-   cursor = db.execute_query(db_connection, query)
-   results = cursor.fetchall()
-   return render_template('customer_like_pet_list.j2', likePets=results, base64=base64)
-
+      cursor = db.execute_query(db_connection, query)
+      results = cursor.fetchall()
+      return render_template('customer_like_pet_list.j2', likePets=results, base64=base64)
+   else:
+      return render_template('customer_like_pet_list_empty.j2')
    
    
    # likedPetsIdList = [pet['petsID'] for pet in likedResult]
