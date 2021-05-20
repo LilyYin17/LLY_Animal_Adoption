@@ -66,3 +66,12 @@ CREATE TABLE `CustomerLikePet` (
 	CONSTRAINT `CustomerLikePet_Customers_fk_1` FOREIGN KEY (`customerID`) REFERENCES `Customers`(`customerID`) ON DELETE CASCADE,
 	PRIMARY KEY (`petsID`, `customerID` )
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+
+
+
+--
+-- Add timestamp for Pets
+--
+USE adoptionproject;
+ALTER TABLE Pets
+ADD COLUMN `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
