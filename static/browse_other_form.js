@@ -1,5 +1,5 @@
 $(function() {
-  $(".like-pet").click(function(event) {
+  $(".like-btn").click(function(event) {
     var petId = event.target.id;
     $.ajax({
       type: "POST",
@@ -18,7 +18,7 @@ $(function() {
 // TODO:ADD ajax for this function
 // $(function() {
 //   $( ".like-button" ).click(function() {
-//     $(this).toggleClass( "press", 1000 );
+//     $(this).t oggleClass( "press", 1000 );
 //   });
 // });
 
