@@ -3,6 +3,7 @@ from flask import request, redirect, url_for
 from flaskext.mysql import MySQL
 import os
 import database.db_connector as db
+import base64
 from pets.dogs import dogs_api
 from pets.cats import cats_api
 from pets.others import others_api
@@ -36,7 +37,12 @@ def root():
 def adpoter_home():
     # Check is user is logged in
     if 'adopter_loggedin' in session:
-        return render_template('adopter_home.j2', userID=session['userID'])
+        # List the newly added pets (4)
+        db_connection = db.db_connection
+        query = 'SELECT * FROM Pets ORDER BY date DESC LIMIT 4;'
+        cursor = db.execute_query(db_connection, query)
+        results = cursor.fetchall()
+        return render_template('adopter_home.j2', userID=session['userID'], pets=results, base64=base64)
     # User is not logged in
     return render_template('adopter_login.j2') 
 
