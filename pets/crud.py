@@ -313,13 +313,25 @@ def browse_detail(id):
       # Customer click "adopt" button, pet becomes "pending"
       query = "UPDATE Pets SET availability='pending' WHERE petsID=%d;" % (id)
       db.execute_query(db.db_connection, query)
-      # Send message to AdminMsg table
-      query = 'INSERT INTO AdminMsg(petsID, customerEmail, status) VALUES (%s, %s, %s)'
+
       petsID = id
       customerEmail = session['username']
-      status = "pending"
-      data = (petsID, customerEmail, status)
+      # First check if row existed IN AdminMsg
+      query = 'SELECT * FROM AdminMsg WHERE customerEmail = %s AND petsID=%s'
+      data = (customerEmail, petsID)
       cursor = db.execute_query(db_connection, query, data)
+      results = cursor.fetchall()
+      if results:
+         # Update corresponding message
+         query = 'UPDATE AdminMsg SET status="pending" WHERE customerEmail = %s AND petsID=%s'
+         data = (customerEmail, petsID)
+         cursor = db.execute_query(db_connection, query, data)
+      else:   
+         # Send message to AdminMsg table
+         query = 'INSERT IGNORE INTO AdminMsg(petsID, customerEmail, status) VALUES (%s, %s, %s)'
+         status = "pending"
+         data = (petsID, customerEmail, status)
+         cursor = db.execute_query(db_connection, query, data)
       return render_template('customer_request_ok.j2', userID=session['userID'])
       
 # Adopter find a dog page

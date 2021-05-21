@@ -1,28 +1,40 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
-    <h3 class="page-name">Welcome back, {{ session['username'] }}! Click pictures to see available pets!</h3>
-
-    <div class="catDiv">
-        <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
-        <div class="middle">
-            <a href="/browse_cats">Browse Cats</a>
+    <h2 class="page-name">Welcome back, {{ session['username'] }}!</h2><br>
+    <div class="browse-pets">
+        <h3> Newly added pets for adoption!</h3>
+        {% for pet in pets %}
+            <div class="petDiv">
+                <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" class="newlyPetsImg" style="width:100%;border-radius:25px;">
+                <div class="middle">
+                    <a href="/browse_details/{{ pet.petsID}}">{{pet.name}}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="browse-pets">
+        <br><h3 class="page-name">Click pictures to see available pets!</h3>
+        <div class="catDiv">
+            <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
+            <div class="middle">
+                <a href="/browse_cats">Browse Cats</a>
+            </div>
+        </div>
+        <div class="dogDiv">
+            <img src="/static/images/dog1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
+            <div class="middle">
+                <a href="/browse_dogs">Browse Dogs</a>
+            </div>
+        </div>
+        <div class="otherDiv">
+            <img src="/static/images/other1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
+            <div class="middle">
+                <a href="/browse_others">Browse Other Pets</a>
+            </div>
         </div>
     </div>
-
-    <div class="dogDiv">
-        <img src="/static/images/dog1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
-        <div class="middle">
-            <a href="/browse_dogs">Browse Dogs</a>
-        </div>
-    </div>
-
-    <div class="otherDiv">
-        <img src="/static/images/other1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
-        <div class="middle">
-            <a href="/browse_others">Browse Other Pets</a>
-        </div>
-    </div>
-
+    
     <div class="contact">
         <pre>    *** For any questions, contact us at: Email - lly_adoption@gmail.com; Phone - 123-456-7890.</pre>
     </div>

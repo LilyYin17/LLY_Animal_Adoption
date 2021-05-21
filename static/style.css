@@ -204,6 +204,17 @@ li.dropdown {
   left: 100px;
 }
 
+/* Style the dog block in adopter and shelter home pages */
+.petDiv {
+  height: 300px;
+  width: 400px;
+  border-radius: 25px;
+  background-color: #bfbfbf;
+  display: inline-block;
+  position: relative;
+  top: 25px;
+}
+
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_css_image_overlay_opacity */
 /* Image hover overlay styling of three blocks in landing page */
 .landingImg {
@@ -211,6 +222,15 @@ li.dropdown {
   display: block;
   width: 100%;
   height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.newlyPetsImg {
+  opacity: 1;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
   transition: .5s ease;
   backface-visibility: hidden;
 }
@@ -247,6 +267,14 @@ li.dropdown {
 
 .otherDiv:hover .middle {
  opacity: 1;
+}
+
+.petDiv:hover .newlyPetsImg {
+  opacity: 0.3;
+}
+
+.petDiv:hover .middle {
+  opacity: 1;
 }
 
 .middle a {
