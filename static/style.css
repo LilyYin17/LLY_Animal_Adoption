@@ -485,16 +485,16 @@ td {
 
 
 /* todo: for like button part, remove the span part, https://codepen.io/kieranfivestars/pen/PwzjgN */
-/* body {
+.like-button:body {
   margin:0;
   text-align:center;
   padding-top:120px;
   font-family:'open sans',sans-serif;
-  background:#ddd;
+  /* background:#ddd; */
   height:100%;
 }
 
-div {
+.like-button:div {
   height:100px;
   margin:0 auto;
   position: relative;
@@ -503,7 +503,7 @@ div {
 .like-button {
   cursor:pointer;
   padding:10px 12px 8px;
-  background:#fff;
+  /* background:#fff; */
   border-radius:50%;
   display:inline-block;
   margin:0 0 15px;
@@ -533,31 +533,31 @@ div {
   color:transparent;
   font-weight:400;
 } */
-/* 
+
 .like-button.press {
   animation: size .4s;
   color:#e23b3b;
-/* }
+}
 
-span.press {
+/* span.press {
   bottom:120px;
   font-size:14px;
   visibility:visible;
   animation: fade 1s;
 } */
 
-/* @keyframes fade {
+@keyframes fade {
   0% {color:#transparent;}
   50% {color:#e23b3b;}
   100% {color:#transparent;}
-} */
+}
 
-/* @keyframes size {
+@keyframes size {
   0% {padding:10px 12px 8px;}
   50% {padding:14px 16px 12px;  
     margin-top:-4px;}
   100% {padding:10px 12px 8px;}
-}  */
+} 
 
 /* Style all like buttons */
 .like-btn {

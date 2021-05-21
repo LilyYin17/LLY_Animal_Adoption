@@ -14,17 +14,49 @@ others_api = Blueprint('others_api', __name__)
 # Adopter browse all other pets.
 @others_api.route('/browse_others')
 def browse_others():
+    
+    likeButtonRed = -1;  #  the like button is grey now
     db_connection = db.db_connection
     query = 'SELECT * FROM Pets WHERE type = "%s";' % ("others")
     cursor = db.execute_query(db_connection, query)
-    results = cursor.fetchall()
-    petsIdList = [pet['petsID'] for pet in results]
-    print(petsIdList)
+    allOtherPetlist = cursor.fetchall()
+    AllOtherPetsIdList = [pet['petsID'] for pet in allOtherPetlist]
 
-    query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in petsIdList))
+    print("AllOtherPetsIdList", AllOtherPetsIdList)
+
+    # Get all other type of pet is liked by this customer  
+    query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllOtherPetsIdList))
     cursor = db.execute_query(db_connection, query)
-    likedResult = cursor.fetchall()
-    print(likedResult)
+    likedOtherPetResult = cursor.fetchall()
+    # print("likedOtherPetResult", likedOtherPetResult)
+
+    if likedOtherPetResult:  #if there is other type of pet is liked by this customer
+      print("likedOtherPetResult",likedOtherPetResult)
+
+      likedOtherPetsIdList = [pet['petsID'] for pet in likedOtherPetResult]
+      print("likedOtherPetsIdList", likedOtherPetsIdList)
+
+
+      
+       
+      for petID in likedOtherPetsIdList:
+          
+          
+
+
+    #   query = 'SELECT * FROM Pets WHERE petsID IN (%s);' % (",".join(str(elem) for elem in likedOtherPetsIdList))
+
+    #   cursor = db.execute_query(db_connection, query)
+    #   results = cursor.fetchall()
+
+    #   likeButtonRed = 0;  #return true for the like button to become red
+
+
+    return render_template('browse_others.j2', others=allOtherPetlist,base64=base64)
+   
+   
+
+
 
     # for result in results
     #     if result.petsID 
@@ -36,9 +68,6 @@ def browse_others():
 
 
     # query = 'SELECT * FROM CustomerLikePet WHERE customerID = session['userID'] And petsID IN (others.petsID);'
-
-
-
 
 
 # Admin protocol

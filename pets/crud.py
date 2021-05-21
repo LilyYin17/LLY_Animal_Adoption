@@ -519,8 +519,6 @@ def adopter_find_other_pet():
 def customer_like_pet(id):
    db_connection = db.db_connection
   
-
-
    if request.method == 'POST':
       # Customer click "LIKE" button
       query = 'INSERT IGNORE INTO CustomerLikePet(petsID, customerID) VALUES (%s, %s)'
@@ -541,7 +539,7 @@ def customer_like_pet(id):
    #  return render_template('adopter_login.j2') 
 
 
-    # Adopter browse pet details, give id is petsID
+    # Adopter browse liked pet list
 @crud_api.route('/customer_like_pet_list', methods=['POST', 'GET'])
 def customer_like_pet_list():
    db_connection = db.db_connection
@@ -551,10 +549,10 @@ def customer_like_pet_list():
    cursor = db.execute_query(db_connection, query)
    likedResult = cursor.fetchall()
    if likedResult:
-      print(likedResult)
+      # print(likedResult)
 
       likedPetsIdList = [pet['petsID'] for pet in likedResult]
-      print(likedPetsIdList)
+      # print(likedPetsIdList)
       query = 'SELECT * FROM Pets WHERE petsID IN (%s);' % (",".join(str(elem) for elem in likedPetsIdList))
 
       cursor = db.execute_query(db_connection, query)
