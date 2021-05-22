@@ -14,17 +14,34 @@ others_api = Blueprint('others_api', __name__)
 # Adopter browse all other pets.
 @others_api.route('/browse_others')
 def browse_others():
+    
     db_connection = db.db_connection
     query = 'SELECT * FROM Pets WHERE type = "%s";' % ("others")
     cursor = db.execute_query(db_connection, query)
-    results = cursor.fetchall()
-    petsIdList = [pet['petsID'] for pet in results]
-    print(petsIdList)
+    allOtherPetlist = cursor.fetchall()
 
-    query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in petsIdList))
+    for pet in allOtherPetlist:
+        pet['isLiked'] = False
+
+    AllOtherPetsIdList = [pet['petsID'] for pet in allOtherPetlist]
+
+    # Get all other type of pet is liked by this customer  
+    query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllOtherPetsIdList))
     cursor = db.execute_query(db_connection, query)
-    likedResult = cursor.fetchall()
-    print(likedResult)
+    likedOtherPetResult = cursor.fetchall()
+
+    if likedOtherPetResult:  #if there is other type of pet is liked by this customer
+        # print("likedOtherPetResult: ", likedOtherPetResult) # petId, customerId
+        for likedPet in likedOtherPetResult:
+            for pet in allOtherPetlist: 
+                if pet['petsID'] == likedPet['petsID']:
+                    pet['isLiked'] = True
+
+    return render_template('browse_others.j2', others=allOtherPetlist,base64=base64)
+   
+   
+
+
 
     # for result in results
     #     if result.petsID 
@@ -36,9 +53,6 @@ def browse_others():
 
 
     # query = 'SELECT * FROM CustomerLikePet WHERE customerID = session['userID'] And petsID IN (others.petsID);'
-
-
-
 
 
 # Admin protocol
