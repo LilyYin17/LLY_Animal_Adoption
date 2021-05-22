@@ -513,9 +513,8 @@ def adopter_find_other_pet():
         return render_template('adopter_detailed_find_other_pet.j2', others=results, base64=base64)
 
 
-#TODO 
 # Adopter like a pet, give id is petsID
-@crud_api.route('/customer_like_pet/<int:id>', methods=['POST', 'GET'])  
+@crud_api.route('/customer_like_pet/<int:id>', methods=['POST', 'DELETE'])  
 def customer_like_pet(id):
    db_connection = db.db_connection
   
@@ -530,13 +529,11 @@ def customer_like_pet(id):
       return "success"
       # return render_template('customer_like_pet_result.j2', customerID=session['userID'])
 
-
-   # @crud_api.route('/customer_like_pet_list')
-   # def customer_like_pet_list():
-   #  if 'adopter_loggedin' in session:
-   #      return render_template('adopter_home.j2', userID=session['userID'])
-   #  # User is not logged in
-   #  return render_template('adopter_login.j2') 
+   if request.method == 'DELETE':
+      # Customer click the "LIKE" button again when the pet is liked
+      query = 'DELETE FROM CustomerLikePet WHERE petsID = %d AND customerID = %d;'% (id,session['userID'])
+      cursor = db.execute_query(db_connection, query)
+      return "success"
 
 
     # Adopter browse liked pet list

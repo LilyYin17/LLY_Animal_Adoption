@@ -15,34 +15,31 @@ others_api = Blueprint('others_api', __name__)
 @others_api.route('/browse_others')
 def browse_others():
     
-    likeButtonRed = -1;  #  the like button is grey now
     db_connection = db.db_connection
     query = 'SELECT * FROM Pets WHERE type = "%s";' % ("others")
     cursor = db.execute_query(db_connection, query)
     allOtherPetlist = cursor.fetchall()
+
+    for pet in allOtherPetlist:
+        pet['isLiked'] = False
+
     AllOtherPetsIdList = [pet['petsID'] for pet in allOtherPetlist]
 
-    print("AllOtherPetsIdList", AllOtherPetsIdList)
+    # print("AllOtherPetsIdList", AllOtherPetsIdList)
 
     # Get all other type of pet is liked by this customer  
     query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllOtherPetsIdList))
     cursor = db.execute_query(db_connection, query)
     likedOtherPetResult = cursor.fetchall()
-    # print("likedOtherPetResult", likedOtherPetResult)
 
     if likedOtherPetResult:  #if there is other type of pet is liked by this customer
-      print("likedOtherPetResult",likedOtherPetResult)
+        print("likedOtherPetResult: ", likedOtherPetResult) # petId, customerId
+        for likedPet in likedOtherPetResult:
+            for pet in allOtherPetlist: 
+                if pet['petsID'] == likedPet['petsID']:
+                    pet['isLiked'] = True
 
-      likedOtherPetsIdList = [pet['petsID'] for pet in likedOtherPetResult]
-      print("likedOtherPetsIdList", likedOtherPetsIdList)
-
-
-      
-       
-      for petID in likedOtherPetsIdList:
-          
-          
-
+    #   for petID in likedOtherPetsIdList:
 
     #   query = 'SELECT * FROM Pets WHERE petsID IN (%s);' % (",".join(str(elem) for elem in likedOtherPetsIdList))
 
