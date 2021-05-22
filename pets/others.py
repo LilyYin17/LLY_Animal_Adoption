@@ -25,29 +25,17 @@ def browse_others():
 
     AllOtherPetsIdList = [pet['petsID'] for pet in allOtherPetlist]
 
-    # print("AllOtherPetsIdList", AllOtherPetsIdList)
-
     # Get all other type of pet is liked by this customer  
     query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllOtherPetsIdList))
     cursor = db.execute_query(db_connection, query)
     likedOtherPetResult = cursor.fetchall()
 
     if likedOtherPetResult:  #if there is other type of pet is liked by this customer
-        print("likedOtherPetResult: ", likedOtherPetResult) # petId, customerId
+        # print("likedOtherPetResult: ", likedOtherPetResult) # petId, customerId
         for likedPet in likedOtherPetResult:
             for pet in allOtherPetlist: 
                 if pet['petsID'] == likedPet['petsID']:
                     pet['isLiked'] = True
-
-    #   for petID in likedOtherPetsIdList:
-
-    #   query = 'SELECT * FROM Pets WHERE petsID IN (%s);' % (",".join(str(elem) for elem in likedOtherPetsIdList))
-
-    #   cursor = db.execute_query(db_connection, query)
-    #   results = cursor.fetchall()
-
-    #   likeButtonRed = 0;  #return true for the like button to become red
-
 
     return render_template('browse_others.j2', others=allOtherPetlist,base64=base64)
    

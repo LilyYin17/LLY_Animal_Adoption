@@ -16,8 +16,26 @@ def browse_dogs():
     db_connection = db.db_connection
     query = 'SELECT * FROM Pets WHERE type = "%s";' % ("dog")
     cursor = db.execute_query(db_connection, query)
-    results = cursor.fetchall()
-    return render_template('browse_dogs.j2', dogs=results, base64=base64)
+
+    allDogslist = cursor.fetchall()
+
+    for pet in allDogslist:
+        pet['isLiked'] = False
+
+    AllDogsIdList = [pet['petsID'] for pet in allDogslist]
+
+    # Get all dogs are liked by this customer  
+    query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllDogsIdList))
+    cursor = db.execute_query(db_connection, query)
+    likedDogResult = cursor.fetchall()
+
+    if likedDogResult:  #if there are dogs are liked by this customer
+        for likedPet in likedDogResult:
+            for pet in allDogslist: 
+                if pet['petsID'] == likedPet['petsID']:
+                    pet['isLiked'] = True
+
+    return render_template('browse_dogs.j2', dogs=allDogslist, base64=base64)
 
 # Admin protocol
 # Dogs Archive page, show all dogs

@@ -1,12 +1,18 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
     <h2 class="page-name">All Cats</h2>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='/browse_cats_form.js') }}"></script>
+    
     {% for cat in cats %}
         <div class="browse-container">
             <img src="data:;base64,{{ base64.b64encode(cat.img).decode() }}">
             <h3 style="color:#404040;">{{ cat.name }}</h3>
+
+            <i id="{{ cat.petsID }}" class="like-button {{ 'press' if cat.isLiked }}"></i>
+
             <h3 style="color:#404040;">* {{ cat.availability }} *</h3>
-            <input id="{{ cat.petsID }}" type="button" name="LIKE" class="like-btn" value="Like">
+
             <br><br>
             <button onclick="window.location.href='/browse_details/{{ cat.petsID }}'">View Details</button>
         </div>

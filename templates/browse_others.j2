@@ -8,19 +8,10 @@
         <div class="browse-container">
             <img src="data:;base64,{{ base64.b64encode(other.img).decode() }}">
             <h3 style="color:#404040;">{{ other.name }}</h3>
-
-            {# TODO:
-                <div>
-                    <i class="like-button"></i>
-                </div> #}
-
-           {# <input id="{{ other.petsID }}" type="button" name="LIKE" class="like-button" value="Like">#}
-
            
             <i id="{{ other.petsID }}" class="like-button {{ 'press' if other.isLiked }}"></i>
 
             <h3 style="color:#404040;">* {{ other.availability }} *</h3>
-            {#<input id="{{ other.petsID }}" type="button" name="LIKE" class="like-btn" value="Like">#}
             <br><br>
             <button onclick="window.location.href='/browse_details/{{ other.petsID }}'">View Details</button>
         </div>
