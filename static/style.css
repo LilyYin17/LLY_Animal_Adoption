@@ -447,7 +447,8 @@ td {
   border-radius: 5px;
   display: inline-block;
   position: relative;
-  margin: 25px;
+  margin: 25px 25px 45px 45px;
+  float: left;
 }
 
 .browse-container img {
