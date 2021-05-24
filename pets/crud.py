@@ -411,7 +411,30 @@ def adopter_find_a_dog():
         base_query + ";"
         cursor = db.execute_query(db_connection, base_query)
         results = cursor.fetchall()
-        return render_template('adopter_detailed_find_your_dog.j2', dogs=results, base64=base64)
+
+        if results:
+ 
+           for pet in results:
+             pet['isLiked'] = False
+
+           AllPetsIdList = [pet['petsID'] for pet in results]
+
+               # Get all pet is liked by this customer  
+           query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllPetsIdList))
+           cursor = db.execute_query(db_connection, query)
+           likedPetResult = cursor.fetchall()
+
+           if likedPetResult:  #if there are pets is liked by this customer
+                  # print("likedOtherPetResult: ", likedOtherPetResult) # petId, customerId
+              for likedPet in likedPetResult:
+                    for pet in results: 
+                       if pet['petsID'] == likedPet['petsID']:
+                          pet['isLiked'] = True
+
+           return render_template('adopter_detailed_find_your_dog.j2', dogs=results, base64=base64)
+        else:
+           return render_template('customer_find_a_pet_empty.j2')
+
 
 # Adopter find a cat page
 @crud_api.route('/adopter_find_a_cat', methods=['GET', 'POST'])
@@ -470,7 +493,29 @@ def adopter_find_a_cat():
         base_query + ";"
         cursor = db.execute_query(db_connection, base_query)
         results = cursor.fetchall()
-        return render_template('adopter_detailed_find_your_cat.j2', cats=results, base64=base64)
+
+        if results:
+ 
+           for pet in results:
+             pet['isLiked'] = False
+
+           AllPetsIdList = [pet['petsID'] for pet in results]
+
+               # Get all pet is liked by this customer  
+           query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllPetsIdList))
+           cursor = db.execute_query(db_connection, query)
+           likedPetResult = cursor.fetchall()
+
+           if likedPetResult:  #if there are pets is liked by this customer
+                  # print("likedOtherPetResult: ", likedOtherPetResult) # petId, customerId
+              for likedPet in likedPetResult:
+                    for pet in results: 
+                       if pet['petsID'] == likedPet['petsID']:
+                          pet['isLiked'] = True
+
+           return render_template('adopter_detailed_find_your_cat.j2', cats=results, base64=base64)
+        else:
+           return render_template('customer_find_a_pet_empty.j2')
 
 # Adopter find other pet page
 @crud_api.route('/adopter_find_other_pet', methods=['GET', 'POST'])
@@ -530,7 +575,33 @@ def adopter_find_other_pet():
         base_query + ";"
         cursor = db.execute_query(db_connection, base_query)
         results = cursor.fetchall()
-        return render_template('adopter_detailed_find_other_pet.j2', others=results, base64=base64)
+
+        if results:
+ 
+           for pet in results:
+             pet['isLiked'] = False
+
+           AllPetsIdList = [pet['petsID'] for pet in results]
+
+               # Get all pet is liked by this customer  
+           query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID IN (%s);' % (session['userID'], ",".join(str(elem) for elem in AllPetsIdList))
+           cursor = db.execute_query(db_connection, query)
+           likedPetResult = cursor.fetchall()
+
+           if likedPetResult:  #if there are pets is liked by this customer
+                  # print("likedOtherPetResult: ", likedOtherPetResult) # petId, customerId
+              for likedPet in likedPetResult:
+                    for pet in results: 
+                       if pet['petsID'] == likedPet['petsID']:
+                          pet['isLiked'] = True
+
+           return render_template('adopter_detailed_find_other_pet.j2', others=results, base64=base64)
+        else:
+           return render_template('customer_find_a_pet_empty.j2')
+
+
+
+
 
 
 # Adopter like a pet, give id is petsID
