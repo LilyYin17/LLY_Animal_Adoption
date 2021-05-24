@@ -308,6 +308,19 @@ def browse_detail(id):
       query = 'SELECT * FROM Pets WHERE petsID = %d;' % (id)
       cursor = db.execute_query(db_connection, query)
       results = cursor.fetchall()
+
+
+      for pet in results:
+        pet['isLiked'] = False
+
+    # check if this pet is liked by this customer  
+      query = 'SELECT * FROM CustomerLikePet WHERE customerID = "%s" And petsID = "%s";' % (session['userID'],id)
+      cursor = db.execute_query(db_connection, query)
+      likedPetResult = cursor.fetchall()
+
+      if likedPetResult:  #if this pet is liked by this customer
+         pet['isLiked'] = True
+   
       return render_template('customer_browse_details.j2', pets=results, base64=base64)
    elif request.method == 'POST':
       # Customer click "adopt" button, pet becomes "pending"
@@ -333,6 +346,13 @@ def browse_detail(id):
          data = (petsID, customerEmail, status)
          cursor = db.execute_query(db_connection, query, data)
       return render_template('customer_request_ok.j2', userID=session['userID'])
+
+
+
+
+
+
+
       
 # Adopter find a dog page
 @crud_api.route('/adopter_find_a_dog', methods=['GET', 'POST'])

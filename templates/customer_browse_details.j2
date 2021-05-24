@@ -15,13 +15,6 @@
             <h4 class="page-name">{{ pet.breed}} &middot {{ pet.age}} months &middot {{ pet.gender}} &middot {{ pet.size}} size</h4>
 
 
-  {#          <br>
-            <form id="adopter_like_pet_form" action="/customer_like_pet/{{ pet.petsID }}" method="post">
-                <input type="submit" name="LIKE" class="like-btn" value="Like"/>
-            </form>
-            <br>
-    #}
-
             <i id="{{ pet.petsID }}" class="like-button {{ 'press' if pet.isLiked }}"></i>
 
             <p>- {{ pet.name }}

@@ -39,20 +39,9 @@ def browse_others():
 
     return render_template('browse_others.j2', others=allOtherPetlist,base64=base64)
    
-   
 
+    # return render_template('browse_others.j2', others=results, base64=base64)
 
-
-    # for result in results
-    #     if result.petsID 
-    #     isLiked: falsed
-
-
-
-    return render_template('browse_others.j2', others=results, base64=base64)
-
-
-    # query = 'SELECT * FROM CustomerLikePet WHERE customerID = session['userID'] And petsID IN (others.petsID);'
 
 
 # Admin protocol
