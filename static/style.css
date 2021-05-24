@@ -494,8 +494,8 @@ td {
   margin-right: auto;
 }
 
-
-/* todo: for like button part, remove the span part, https://codepen.io/kieranfivestars/pen/PwzjgN */
+/* Style citation: https://codepen.io/kieranfivestars/pen/PwzjgN */
+/* Style all buttons for like function */
 .like-button:body {
   margin:0;
   text-align:center;
@@ -568,20 +568,4 @@ td {
   50% {padding:14px 16px 12px;  
     margin-top:-4px;}
   100% {padding:10px 12px 8px;}
-} 
-
-/* Style all like buttons */
-.like-btn {
-  background-color: #ff8080;
-  border: none;
-  color: white;
-  padding: 5px 15px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.like-btn:hover {
-  background-color: #ff0000;
 }
