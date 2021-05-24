@@ -169,7 +169,7 @@ li.dropdown {
   top: 80px;
 }
 
-/* Style the cat block in adopter and shelter home pages */
+/* Style the cat block on shelter home page */
 .catDiv {
   height: 300px;
   width: 400px;
@@ -181,7 +181,7 @@ li.dropdown {
   right: 100px;
 }
 
-/* Style the dog block in adopter and shelter home pages */
+/* Style the dog block on shelter home page */
 .dogDiv {
   height: 300px;
   width: 400px;
@@ -192,7 +192,7 @@ li.dropdown {
   top: 25px;
 }
 
-/* Style the other pets block in adopter and shelter home pages */
+/* Style the other pets block on shelter home page */
 .otherDiv {
   height: 300px;
   width: 400px;
@@ -204,15 +204,15 @@ li.dropdown {
   left: 100px;
 }
 
-/* Style the dog block in adopter and shelter home pages */
+/* Style the newly added pets block on adopter home page */
 .petDiv {
   height: 300px;
-  width: 400px;
+  width: 300px;
   border-radius: 25px;
   background-color: #bfbfbf;
   display: inline-block;
   position: relative;
-  top: 25px;
+  margin: 10px 35px;
 }
 
 /* Style citation: https://www.w3schools.com/css/tryit.asp?filename=trycss_css_image_overlay_opacity */
@@ -286,7 +286,17 @@ li.dropdown {
 }
 
 /* Style the contact div on adopter home page */
-.contact {
+.adopter-contact {
+  border-top-style: solid;
+  border-color: #bfbfbf;
+  color: #404040;
+  text-align: left;
+  position: relative;
+  top: 25px;
+}
+
+/* Style the contact div on shelter home page */
+.shelter-contact {
   border-top-style: solid;
   border-color: #bfbfbf;
   color: #404040;
@@ -437,7 +447,8 @@ td {
   border-radius: 5px;
   display: inline-block;
   position: relative;
-  margin: 25px;
+  margin: 25px 25px 45px 45px;
+  float: left;
 }
 
 .browse-container img {
@@ -483,8 +494,8 @@ td {
   margin-right: auto;
 }
 
-
-/* todo: for like button part, remove the span part, https://codepen.io/kieranfivestars/pen/PwzjgN */
+/* Style citation: https://codepen.io/kieranfivestars/pen/PwzjgN */
+/* Style all buttons for like function */
 .like-button:body {
   margin:0;
   text-align:center;
@@ -557,20 +568,4 @@ td {
   50% {padding:14px 16px 12px;  
     margin-top:-4px;}
   100% {padding:10px 12px 8px;}
-} 
-
-/* Style all like buttons */
-.like-btn {
-  background-color: #ff8080;
-  border: none;
-  color: white;
-  padding: 5px 15px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.like-btn:hover {
-  background-color: #ff0000;
 }
