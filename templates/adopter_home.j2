@@ -1,6 +1,6 @@
 {% extends 'layouts/main.j2' %}
 {% block content %}
-    <h2 class="page-name">Welcome back, {{ session['username'] }}! See our newly added pets for adoption!</h2><br>
+    <h3 class="page-name">Welcome back, {{ session['username'] }}! See our newly added pets for adoption!</h3><br>
     <div class="browse-pets">
         {% for pet in pets %}
             <div class="petDiv">
