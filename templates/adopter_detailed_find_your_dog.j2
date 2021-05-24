@@ -5,7 +5,9 @@
         <div class="browse-container">
             <img src="data:;base64,{{ base64.b64encode(dog.img).decode() }}">
             <h3 style="color:#404040;">{{ dog['name'] }}</h3>
+            <i id="{{ dog.petsID }}" class="like-button {{ 'press' if dog.isLiked }}"></i>
             <h3 style="color:#404040;">* {{ dog['availability'] }} *</h3>
+            
             <button onclick="window.location.href='/browse_details/{{ dog.petsID }}'">View Details</button>
         </div>
     {% endfor %}
